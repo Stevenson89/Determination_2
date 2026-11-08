@@ -26,4 +26,29 @@
             </li>
         </modExtensions>
     </GeneDef>
+    <GeneDef>
+        <defName>BossMonster</defName>
+        <label>boss monster soul</label>
+        <labelShortAdj>boss monster</labelShortAdj>
+        <description>Carriers of this gene are boss monsters. Rare and powerful monsters who possess immense combat prowess. Their souls persist briefly after death.</description>
+        <iconPath>UI/Icons/Genes/Gene_MagicBiology</iconPath>
+        <displayOrderInCategory>32</displayOrderInCategory>
+        <statFactors>
+            <KillingIntentVulnerability>0.5</KillingIntentVulnerability>
+        </statFactors>
+        <biostatMet>-3</biostatMet>
+        <biostatCpx>1</biostatCpx>
+        <prerequisite>MagicBiology</prerequisite>
+        <symbolPack>
+            <prefixSymbols>
+                <li><symbol>boss</symbol></li>
+            </prefixSymbols>
+        </symbolPack>
+        <displayCategory>Healing</displayCategory>
+        <modExtensions>
+            <li Class="Determination.DeterminationModExtension">
+                <bossMonster>true</bossMonster>
+            </li>
+        </modExtensions>
+    </GeneDef>
 </Defs>

@@ -10,11 +10,20 @@ namespace Determination
 {
     public static class SoulUtilities
     {
+        const int MAX_BOSS_ABSORPTION = 3;
         public static bool IsMonster(Pawn pawn)
         {
             if (pawn.genes == null)
                 return false;
             return pawn.genes.GenesListForReading.Any(g => g.def.HasModExtension<DeterminationModExtension>() && g.def.GetModExtension<DeterminationModExtension>().monsterSoul == true);
+        }
+        public static bool IsBossMonster(Pawn pawn)
+        {
+            if (pawn.genes?.GenesListForReading?.ContainsAny(gene => gene.def.GetModExtension<DeterminationModExtension>()?.bossMonster == true) == true)
+            {
+                return true;
+            }
+            return false;
         }
         public static bool IsMonsterForDetermination(Pawn pawn)
         {
@@ -22,8 +31,10 @@ namespace Determination
                 return false;
             return pawn.genes.GenesListForReading.Any(g => g.def.GetModExtension<DeterminationModExtension>()?.monsterDeterminationOverload == true);
         }
-        public static SoulVariantDef GetSoul(bool monster)
+        public static SoulVariantDef GetSoul(bool monster, bool isBoss)
         {
+            if (isBoss)
+                return SoulVariantDefOf.BossMonster;
             SoulColorDef color = DefDatabase<SoulColorDef>.AllDefs.Where(s => s.monster == monster && s.canSpawn == true).RandomElement();
             IEnumerable<SoulVariantDef> candidates = DefDatabase<SoulVariantDef>.AllDefs.Where(d => d.type == color && d.soulless == false);
             return candidates.RandomElement();
@@ -72,6 +83,20 @@ namespace Determination
                 else
                 {
                     pawn.health.AddHediff(SoulHediffDefOf.HumanSoulAbsorbed);
+                }
+                pawn.health.hediffSet.DirtyCache();
+                pawn.needs.AddOrRemoveNeedsAsAppropriate();
+            }
+            else
+            {
+                Hediff existing = pawn.health.hediffSet.GetFirstHediffOfDef(SoulHediffDefOf.BossMonsterSoulAbsorbed);
+                if (existing != null)
+                {
+                    existing.Severity += 1;
+                }
+                else
+                {
+                    pawn.health.AddHediff(SoulHediffDefOf.BossMonsterSoulAbsorbed);
                 }
                 pawn.health.hediffSet.DirtyCache();
                 pawn.needs.AddOrRemoveNeedsAsAppropriate();
@@ -135,8 +160,11 @@ namespace Determination
             }
             else
             {
-                // TODO: Humans absorbing boss monster souls
-                return false;
+                Hediff hediff = absorber.health.hediffSet.GetFirstHediffOfDef(SoulHediffDefOf.BossMonsterSoulAbsorbed);
+                int alreadyAbsorbed = (int)(hediff != null ? hediff.Severity : 0);
+                if (alreadyAbsorbed >= MAX_BOSS_ABSORPTION)
+                    return false;
+                return IsBossMonster(deceased);
             }
         }
 
@@ -145,6 +173,14 @@ namespace Determination
             if (IsMonster(absorber))
             {
                 return !soul.type.monster;
+            }
+            else if (soul == SoulVariantDefOf.BossMonster)
+            {
+                Hediff hediff = absorber.health.hediffSet.GetFirstHediffOfDef(SoulHediffDefOf.BossMonsterSoulAbsorbed);
+                int alreadyAbsorbed = (int)(hediff != null ? hediff.Severity : 0);
+                if (alreadyAbsorbed >= MAX_BOSS_ABSORPTION)
+                    return false;
+                return true;
             }
             return false;
         }

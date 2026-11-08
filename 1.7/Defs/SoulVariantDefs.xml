@@ -156,4 +156,11 @@
         <description>A monster soul. It possesses many positive attributes in equal measure, but none are strong enough to cause bonuses.</description>
         <type>Monster</type>
     </Determination.SoulVariantDef>
+
+    <Determination.SoulVariantDef ParentName="SoulVariantBase">
+        <defName>BossMonster</defName>
+        <label>boss monster</label>
+        <description>A boss monster soul. Far more powerful than a regular monster soul, but still weaker than that of a human.</description>
+        <type>Monster</type>
+    </Determination.SoulVariantDef>
 </Defs>

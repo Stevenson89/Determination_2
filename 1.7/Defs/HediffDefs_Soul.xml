@@ -250,4 +250,83 @@
             </li>
         </stages>
     </HediffDef>
+
+    <HediffDef>
+        <defName>BossMonsterSoulAbsorbed</defName>
+        <label>absorbed boss soul</label>
+        <labelNoun>an absorbed boss soul</labelNoun>
+        <description>This human has absorbed the soul of a boss monster. It now wields incredible power. A human may absorb up to three souls.</description>
+        <defaultLabelColor>(0.68,0.54,1)</defaultLabelColor>
+        <initialSeverity>1</initialSeverity>
+        <stages>
+            <!-- One absorbed-->
+            <li>
+                <minSeverity>1</minSeverity>
+                <label>1</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>2</offset>
+                    </li>
+                </capMods>
+                <statFactors>
+                    <IncomingDamageFactor>0.30</IncomingDamageFactor>
+                    <MeleeDamageFactor>3</MeleeDamageFactor>
+                </statFactors>
+                <disablesNeeds>
+                    <li>Rest</li>
+                    <li>Food</li>
+                    <li>Comfort</li>
+                </disablesNeeds>
+                <painFactor>0.5</painFactor>
+                <regeneration>60</regeneration>
+            </li>
+            <!-- Two absorbed-->
+            <li>
+                <minSeverity>2</minSeverity>
+                <label>2</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>2.25</offset>
+                    </li>
+                </capMods>
+                <statFactors>
+                    <IncomingDamageFactor>0.25</IncomingDamageFactor>
+                    <MeleeDamageFactor>4</MeleeDamageFactor>
+                </statFactors>
+                <disablesNeeds>
+                    <li>Rest</li>
+                    <li>Food</li>
+                    <li>Comfort</li>
+                </disablesNeeds>
+                <painFactor>0.4</painFactor>
+                <regeneration>60</regeneration>
+                <totalBleedFactor>0.5</totalBleedFactor>
+            </li>
+            <!-- Three absorbed-->
+            <li>
+                <minSeverity>3</minSeverity>
+                <label>3</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>2.75</offset>
+                    </li>
+                </capMods>
+                <statFactors>
+                    <IncomingDamageFactor>0.25</IncomingDamageFactor>
+                    <MeleeDamageFactor>4</MeleeDamageFactor>
+                </statFactors>
+                <disablesNeeds>
+                    <li>Rest</li>
+                    <li>Food</li>
+                    <li>Comfort</li>
+                </disablesNeeds>
+                <painFactor>0.3</painFactor>
+                <regeneration>100</regeneration>
+                <totalBleedFactor>0</totalBleedFactor>
+            </li>
+        </stages>
+    </HediffDef>
 </Defs>

@@ -12,6 +12,8 @@ namespace Determination
     {
         public static SoulVariantDef SoullessHuman;
         public static SoulVariantDef SoullessMonster;
+        public static SoulVariantDef BossMonster;
+
         static SoulVariantDefOf() => DefOfHelper.EnsureInitializedInCtor(typeof(SoulVariantDefOf));
     }
 }

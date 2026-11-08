@@ -11,7 +11,12 @@ namespace Determination
     public class CompDisintegrate : ThingComp
     {
         public float timer = 2;
-        public bool active = false;
+        private bool active = false;
+        public void Activate()
+        {
+            timer = SoulUtilities.IsBossMonster((parent as Corpse).InnerPawn) ? 6 : 0;
+            active = true;
+        }
         public override void CompTickRare()
         {
             if (active)

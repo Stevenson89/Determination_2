@@ -20,6 +20,7 @@ namespace Determination
             if (soul.Variant != null)
                 return;
             bool isMonster = SoulUtilities.IsMonster(__result);
+            bool isBoss = SoulUtilities.IsBossMonster(__result);
             SoulVariantDef variant;
             List<SoulVariantDef> options = new List<SoulVariantDef>();
             if (__result.story?.traits != null)
@@ -46,7 +47,7 @@ namespace Determination
                 variant = options.RandomElement();
             }
             else
-                variant = SoulUtilities.GetSoul(isMonster);
+                variant = SoulUtilities.GetSoul(isMonster, isBoss);
 
             soul.Variant = variant;
             soul.OnPawnGenerated();

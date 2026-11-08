@@ -14,5 +14,6 @@ namespace Determination
         public bool dustOnDeath;
         public bool monsterDeterminationOverload;
         public bool monsterSoul;
+        public bool bossMonster;
     }
 }
