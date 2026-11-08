@@ -5,12 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using Waylith.Math;
 
 namespace Determination
 {
     public static class SoulUtilities
     {
         const int MAX_BOSS_ABSORPTION = 3;
+        const int MAX_HUMAN_ABSORPTION = 100;
         public static bool IsMonster(Pawn pawn)
         {
             if (pawn.genes == null)
@@ -30,6 +32,12 @@ namespace Determination
             if (pawn.genes == null)
                 return false;
             return pawn.genes.GenesListForReading.Any(g => g.def.GetModExtension<DeterminationModExtension>()?.monsterDeterminationOverload == true);
+        }
+        public static Soul ExtractSoul(Pawn pawn)
+        {
+            Soul result = new Soul(pawn);
+            MakeSoulless(pawn);
+            return result;
         }
         public static SoulVariantDef GetSoul(bool monster, bool isBoss)
         {
@@ -101,6 +109,31 @@ namespace Determination
                 pawn.health.hediffSet.DirtyCache();
                 pawn.needs.AddOrRemoveNeedsAsAppropriate();
             }
+        }
+        public static void UpdatePawnSoulHediff(Pawn pawn)
+        {
+            CompSoul compSoul = pawn.TryGetComp<CompSoul>();
+            if (compSoul == null)
+                return;
+            bool monster = IsMonster(pawn);
+            float absorptionCap = monster ? MAX_HUMAN_ABSORPTION : MAX_BOSS_ABSORPTION;
+            float targetSeverity = Mathf.Clamp(compSoul.ExtraSouls.Count, 0, absorptionCap);
+            
+            HediffDef absorptionHediff = monster ? SoulHediffDefOf.HumanSoulAbsorbed : SoulHediffDefOf.BossMonsterSoulAbsorbed;
+            
+
+            Hediff? existing = pawn.health.hediffSet.GetFirstHediffOfDef(absorptionHediff);
+            float severity = existing?.Severity ?? 0;
+            if (severity == 0 && targetSeverity > 0)
+            {
+                Hediff hediff = pawn.health.AddHediff(absorptionHediff);
+                hediff.Severity = targetSeverity;
+            }
+            else
+            {
+                existing?.Severity = targetSeverity;
+            }
+              
         }
 
         public static float GetDeterminationExhaustion(Pawn pawn)

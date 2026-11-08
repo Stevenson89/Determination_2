@@ -14,7 +14,8 @@ namespace Determination
     public class CompSoul : ThingComp
     {
         StringBuilder stringBuilder = new StringBuilder();
-        public SoulVariantDef Variant;
+        public required SoulVariantDef Variant;
+        public List<Soul> ExtraSouls = [];
         private int _EXP = 0;
         public float LVTolerance = 0f;
         private bool isbeingloaded = false;
@@ -125,6 +126,7 @@ namespace Determination
                 isbeingloaded = false;
             Scribe_Defs.Look(ref Variant, "Variant");
             Scribe_Values.Look(ref _EXP, "_EXP");
+            Scribe_Collections.Look(ref ExtraSouls, "ExtraSouls");
         }
 
         public string GetAllModifiers()

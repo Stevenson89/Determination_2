@@ -41,9 +41,9 @@ namespace Determination
                 {
                     return null;
                 }
-                if (soulContainer.soul == null)
+                if (soulContainer.soulVariant == null)
                     return null;
-                if (!SoulUtilities.CanAbsorbSoul(context.FirstSelectedPawn, soulContainer.soul))
+                if (!SoulUtilities.CanAbsorbSoul(context.FirstSelectedPawn, soulContainer.soulVariant))
                 {
                     return null;
                 }

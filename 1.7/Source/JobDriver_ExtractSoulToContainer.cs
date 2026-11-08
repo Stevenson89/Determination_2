@@ -36,9 +36,9 @@ namespace Determination
             {
                 var corpseComp = Corpse.TryGetComp<CompExtractableSoul>();
                 var containerComp = Container.TryGetComp<CompSoulContainer>();
-                containerComp.soul = corpseComp.compSoul.Variant;
+                Soul soul = SoulUtilities.ExtractSoul(Corpse.InnerPawn);
+                containerComp.soul = soul;
                 containerComp.determination = 1f;
-                SoulUtilities.MakeSoulless(Corpse.InnerPawn);
                 corpseComp.extractionTarget = LocalTargetInfo.Invalid;
             });
 

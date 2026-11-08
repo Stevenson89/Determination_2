@@ -28,8 +28,8 @@ namespace Determination
             doAction.WithProgressBarToilDelay(TargetIndex.A);
             doAction.AddFinishAction(() =>
             {
-                SoulUtilities.IncreasePawnSouls(pawn);
-                SoulUtilities.MakeSoulless(((Corpse)TargetA.Thing).InnerPawn);
+                Soul soul = SoulUtilities.ExtractSoul(((Corpse)TargetA.Thing).InnerPawn);
+                pawn.TryGetComp<CompSoul>().ExtraSouls.Add(soul);
             });
             yield return doAction;
         }

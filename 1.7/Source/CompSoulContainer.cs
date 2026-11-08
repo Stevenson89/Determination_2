@@ -10,7 +10,8 @@ namespace Determination
 {
     public class CompSoulContainer : ThingComp
     {
-        public SoulVariantDef soul;
+        public Soul? soul;
+        public SoulVariantDef? soulVariant => soul?.SoulVariant;
         public bool extractAllowed = false;
         public float determination = 1.0f;
 
@@ -24,7 +25,7 @@ namespace Determination
                 {
                     Material baseMat = MaterialPool.MatFrom("Misc/soul", ShaderDatabase.Transparent);
                     uniqueUnderlayMat = new Material(baseMat);
-                    uniqueUnderlayMat.SetColor("_Color", soul.type.color);
+                    uniqueUnderlayMat.SetColor("_Color", soulVariant.type.color);
                 }
                 return uniqueUnderlayMat;
             }
@@ -34,7 +35,7 @@ namespace Determination
         {
             get
             {
-                return soul != null;
+                return soulVariant != null;
             }
         }
 
@@ -71,7 +72,7 @@ namespace Determination
             string part = "";
             if (HasSoul)
             {
-                part += soul.description + "\n";
+                part += soulVariant.description + "\n";
                 part += "DT_Determination".Translate(determination * 100f);
             }
             else
@@ -84,7 +85,7 @@ namespace Determination
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Defs.Look(ref soul, "soul");
+            Scribe_Deep.Look(ref soul, "soul");
             Scribe_Values.Look(ref extractAllowed, "extractAllowed");
             Scribe_Values.Look(ref determination, "determination");
         }

@@ -29,7 +29,10 @@ namespace Determination
             doAction.AddFinishAction(() =>
             {
                 SoulUtilities.IncreasePawnSouls(pawn);
-                TargetA.Thing.TryGetComp<CompSoulContainer>().soul = null;
+                CompSoulContainer containerComp = TargetA.Thing.TryGetComp<CompSoulContainer>();
+                if (containerComp.soul != null)
+                    pawn.TryGetComp<CompSoul>().ExtraSouls.Add(containerComp.soul);
+                containerComp.soul = null;
             });
             yield return doAction;
         }
