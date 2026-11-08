@@ -40,16 +40,18 @@ namespace Determination
 
         public void ExposeData()
         {
-            Scribe_Deep.Look(ref Name, "name");
-            Scribe_Defs.Look(ref ChildhoodBackstory, "childhoodBackstory");
-            Scribe_Defs.Look(ref AdultBackstory, "adultBackstory");
-            Scribe_Deep.Look(ref Ideology, "ideology");
-            Scribe_Values.Look(ref Certainty, "certainty");
-            Scribe_Values.Look(ref Gender, "gender");
-            Scribe_Collections.Look(ref Skills, "skills");
-            Scribe_Deep.Look(ref Traits, "traits");
-            Scribe_Deep.Look(ref Faction, "faction");
-            Scribe_Deep.Look(ref Mood, "mood");
+            Scribe_Deep.Look(ref Name, "Name");
+            Scribe_Defs.Look(ref ChildhoodBackstory, "ChildhoodBackstory");
+            Scribe_Defs.Look(ref AdultBackstory, "AdultBackstory");
+            Scribe_Deep.Look(ref Ideology, "Ideology");
+            Scribe_Values.Look(ref Certainty, "Certainty");
+            Scribe_Values.Look(ref Gender, "Gender");
+            Scribe_Collections.Look(ref Skills, "Skills");
+            Scribe_Deep.Look(ref Traits, "Traits");
+            Scribe_Deep.Look(ref Faction, "Faction");
+            Scribe_Deep.Look(ref Mood, "Mood");
+            Scribe_Defs.Look(ref SoulVariant, "SoulVariant");
+            Scribe_Values.Look(ref Determination, "Determination");
         }
     }
 }
