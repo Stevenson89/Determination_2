@@ -13,11 +13,21 @@ namespace Determination
         public SoulVariantDef soul;
         public bool extractAllowed = false;
         public float determination = 1.0f;
-        
-        private static Material SoulUnderlayMat(SoulVariantDef soul) {
-            Material mat = MaterialPool.MatFrom("Misc/soul", ShaderDatabase.Transparent);
-            mat.SetColor("_Color", soul.type.color);
-            return mat;
+
+        private Material? uniqueUnderlayMat;
+
+        public Material UniqueUnderlayMat
+        {
+            get
+            {
+                if (uniqueUnderlayMat == null)
+                {
+                    Material baseMat = MaterialPool.MatFrom("Misc/soul", ShaderDatabase.Transparent);
+                    uniqueUnderlayMat = new Material(baseMat);
+                    uniqueUnderlayMat.SetColor("_Color", soul.type.color);
+                }
+                return uniqueUnderlayMat;
+            }
         }
 
         public bool HasSoul
@@ -33,7 +43,7 @@ namespace Determination
             Matrix4x4 matrix = default;
             matrix.SetTRS(pos, Quaternion.identity, new Vector3(parent.def.size.x / 3f, 1f, parent.def.size.z / 3f));
 
-            Graphics.DrawMesh(MeshPool.plane10, matrix, SoulUnderlayMat(soul), 0);
+            Graphics.DrawMesh(MeshPool.plane10, matrix, UniqueUnderlayMat, 0);
         }
 
         public override void PostDraw()
@@ -104,6 +114,13 @@ namespace Determination
                     }
                 };
             }
+        }
+
+        public override void PostDestroy(DestroyMode mode, Map previousMap)
+        {
+            base.PostDestroy(mode, previousMap);
+            if (uniqueUnderlayMat != null)
+                UnityEngine.Object.Destroy(uniqueUnderlayMat);
         }
     }
 }
