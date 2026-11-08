@@ -44,6 +44,22 @@ namespace Determination
             Scribe_TargetInfo.Look(ref extractionTarget, "extractionTarget");
         }
 
+        private bool Validator(TargetInfo t)
+        {
+            CompSoulContainer? container = t.Thing?.TryGetComp<CompSoulContainer>();
+            if (container != null && !container.HasSoul && !SoulUtilities.IsBossMonster(compSoul.pawn))
+            {
+                return true;
+            }
+            Pawn? absorber = t.Thing as Pawn;
+            if (absorber != null && !absorber.DeadOrDowned && SoulUtilities.CanAbsorbTargetSoul(absorber, (parent as Corpse).InnerPawn))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             if (!CanExtract) yield break;
@@ -64,12 +80,7 @@ namespace Determination
                         canTargetSelf = false,
                         onlyTargetControlledPawns = true,
                         mapObjectTargetsMustBeAutoAttackable = false,
-                        validator = (TargetInfo t) =>
-                                (t.Thing?.TryGetComp<CompSoulContainer>() != null
-                            && !t.Thing.TryGetComp<CompSoulContainer>().HasSoul)
-                            || (t.Thing as Pawn != null
-                            && !(t.Thing as Pawn).DeadOrDowned
-                            && SoulUtilities.CanAbsorbTargetSoul(t.Thing as Pawn, (parent as Corpse).InnerPawn))
+                        validator = Validator
                     },
                     action = (LocalTargetInfo target) =>
                     {
