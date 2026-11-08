@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/XenotypeDef[defName="Dirtmole"]/genes</xpath>
+        <value>
+            <li>MagicBiology</li>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/XenotypeDef[defName="Pigskin"]/genes</xpath>
+        <value>
+            <li>MagicBiology</li>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/XenotypeDef[defName="Impid"]/genes</xpath>
+        <value>
+            <li>MagicBiology</li>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/XenotypeDef[defName="Yttakin"]/genes</xpath>
+        <value>
+            <li>MagicBiology</li>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/XenotypeDef[defName="Waster"]/genes</xpath>
+        <value>
+            <li>MagicBiology</li>
+        </value>
+    </Operation>
+
+</Patch>

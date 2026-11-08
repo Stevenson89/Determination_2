@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <Determination.SoulColorDef>
+        <defName>Individuality</defName>
+        <label>individuality</label>
+        <description>The trait of this soul doesn't fall into any of the regular categories.</description>
+        <color>(255, 0, 0, 255)</color>
+        <monster>false</monster>
+        <canSpawn>true</canSpawn>
+    </Determination.SoulColorDef>
+
+    <Determination.SoulColorDef>
+        <defName>Patience</defName>
+        <label>patience</label>
+        <description>This soul represents the attribute of PATIENCE.</description>
+        <color>(66, 252, 255, 255)</color>
+        <monster>false</monster>
+        <canSpawn>true</canSpawn>
+    </Determination.SoulColorDef>
+
+    <Determination.SoulColorDef>
+        <defName>Bravery</defName>
+        <label>bravery</label>
+        <description>This soul represents the attribute of BRAVERY.</description>
+        <color>(252, 166, 0, 255)</color>
+        <monster>false</monster>
+        <canSpawn>true</canSpawn>
+    </Determination.SoulColorDef>
+
+    <Determination.SoulColorDef>
+        <defName>Integrity</defName>
+        <label>integrity</label>
+        <description>This soul represents the attribute of INTEGRITY.</description>
+        <color>(0, 60, 255, 255)</color>
+        <monster>false</monster>
+        <canSpawn>true</canSpawn>
+    </Determination.SoulColorDef>
+
+    <Determination.SoulColorDef>
+        <defName>Perseverance</defName>
+        <label>perseverance</label>
+        <description>This soul represents the attribute of PERSEVERANCE.</description>
+        <color>(213, 53, 217, 255)</color>
+        <monster>false</monster>
+        <canSpawn>true</canSpawn>
+    </Determination.SoulColorDef>
+
+    <Determination.SoulColorDef>
+        <defName>Kindness</defName>
+        <label>kindness</label>
+        <description>This soul represents the attribute of KINDNESS.</description>
+        <color>(0, 192, 0, 255)</color>
+        <monster>false</monster>
+        <canSpawn>true</canSpawn>
+    </Determination.SoulColorDef>
+
+    <Determination.SoulColorDef>
+        <defName>Justice</defName>
+        <label>justice</label>
+        <description>This soul represents the attribute of JUSTICE.</description>
+        <color>(255, 255, 0, 255)</color>
+        <monster>false</monster>
+        <canSpawn>true</canSpawn>
+    </Determination.SoulColorDef>
+
+    <Determination.SoulColorDef>
+        <defName>Monster</defName>
+        <label>monster</label>
+        <description>This is the soul of a monster.</description>
+        <color>(255, 255, 255, 255)</color>
+        <monster>true</monster>
+        <canSpawn>true</canSpawn>
+    </Determination.SoulColorDef>
+
+    <Determination.SoulColorDef>
+        <defName>Human</defName>
+        <label>human</label>
+        <description>This is the soul of a human.</description>
+        <color>(255, 255, 255, 255)</color>
+        <monster>false</monster>
+        <canSpawn>false</canSpawn>
+    </Determination.SoulColorDef>
+</Defs>

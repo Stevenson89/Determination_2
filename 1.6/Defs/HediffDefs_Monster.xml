@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <HediffDef>
+        <defName>FallenMonster</defName>
+        <label>fallen</label>
+        <description>This monster's soul has begun to decay. This condition is always fatal in the end without glittertech treatments.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <lethalSeverity>1.0</lethalSeverity>
+        <initialSeverity>0.001</initialSeverity>
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>0.05</severityPerDay>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <label>unconscious</label> 
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.1</setMax>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
+
+    <HediffDef>
+        <defName>HumanSoulAbsorbed</defName>
+        <label>absorbed soul</label>
+        <labelNoun>an absorbed soul</labelNoun>
+        <description>This monster has absorbed the soul of a human. It now wields incredible power, but with more souls it could grow further.</description>
+        <hediffClass>Determination.Hediff_AbsorbedSoul</hediffClass>
+        <defaultLabelColor>(0.68,0.54,1)</defaultLabelColor>
+        <initialSeverity>1</initialSeverity>
+        <stages>
+            <!-- One absorbed-->
+            <li>
+                <label>error1</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>1</offset>
+                    </li>
+                </capMods>
+                <statFactors>
+                    <IncomingDamageFactor>0.5</IncomingDamageFactor>
+                    <MeleeDamageFactor>2</MeleeDamageFactor>
+                </statFactors>
+                <regeneration>20</regeneration>
+            </li>
+            <!-- Two absorbed-->
+            <li>
+                <minSeverity>2</minSeverity>
+                <label>error2</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>1.5</offset>
+                    </li>
+                </capMods>
+                <statFactors>
+                    <IncomingDamageFactor>0.35</IncomingDamageFactor>
+                    <MeleeDamageFactor>2.5</MeleeDamageFactor>
+                </statFactors>
+                <hungerRateFactor>0.5</hungerRateFactor>
+                <restFallFactor>0.5</restFallFactor>
+                <regeneration>40</regeneration>
+            </li>
+            <!-- Three absorbed-->
+            <li>
+                <minSeverity>3</minSeverity>
+                <label>error3</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>2</offset>
+                    </li>
+                </capMods>
+                <statFactors>
+                    <IncomingDamageFactor>0.30</IncomingDamageFactor>
+                    <MeleeDamageFactor>3</MeleeDamageFactor>
+                </statFactors>
+                <disablesNeeds>
+                    <li>Rest</li>
+                    <li>Food</li>
+                    <li>Comfort</li>
+                </disablesNeeds>
+                <painFactor>0.5</painFactor>
+                <regeneration>60</regeneration>
+            </li>
+            <!-- Four absorbed-->
+            <li>
+                <minSeverity>4</minSeverity>
+                <label>error4</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>2.25</offset>
+                    </li>
+                </capMods>
+                <statFactors>
+                    <IncomingDamageFactor>0.25</IncomingDamageFactor>
+                    <MeleeDamageFactor>4</MeleeDamageFactor>
+                </statFactors>
+                <disablesNeeds>
+                    <li>Rest</li>
+                    <li>Food</li>
+                    <li>Comfort</li>
+                </disablesNeeds>
+                <painFactor>0.4</painFactor>
+                <regeneration>60</regeneration>
+                <totalBleedFactor>0.5</totalBleedFactor>
+            </li>
+            <!-- Five absorbed-->
+            <li>
+                <minSeverity>5</minSeverity>
+                <label>error5</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>2.5</offset>
+                    </li>
+                </capMods>
+                <statFactors>
+                    <IncomingDamageFactor>0.25</IncomingDamageFactor>
+                    <MeleeDamageFactor>4</MeleeDamageFactor>
+                </statFactors>
+                <disablesNeeds>
+                    <li>Rest</li>
+                    <li>Food</li>
+                    <li>Comfort</li>
+                </disablesNeeds>
+                <painFactor>0.4</painFactor>
+                <regeneration>80</regeneration>
+                <totalBleedFactor>0.2</totalBleedFactor>
+            </li>
+            <!-- Six absorbed-->
+            <li>
+                <minSeverity>6</minSeverity>
+                <label>error6</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>2.75</offset>
+                    </li>
+                </capMods>
+                <statFactors>
+                    <IncomingDamageFactor>0.25</IncomingDamageFactor>
+                    <MeleeDamageFactor>4</MeleeDamageFactor>
+                </statFactors>
+                <disablesNeeds>
+                    <li>Rest</li>
+                    <li>Food</li>
+                    <li>Comfort</li>
+                </disablesNeeds>
+                <painFactor>0.3</painFactor>
+                <regeneration>100</regeneration>
+                <totalBleedFactor>0</totalBleedFactor>
+            </li>
+            <!-- Seven absorbed-->
+            <!-- These stats are used as a baseline for all future levels-->
+            <li>
+                <minSeverity>7</minSeverity>
+                <label>error7</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>3</offset>
+                    </li>
+                </capMods>
+                <statFactors>
+                    <IncomingDamageFactor>0.2</IncomingDamageFactor>
+                    <MeleeDamageFactor>5</MeleeDamageFactor>
+                </statFactors>
+                <disablesNeeds>
+                    <li>Rest</li>
+                    <li>Food</li>
+                    <li>Comfort</li>
+                </disablesNeeds>
+                <painFactor>0</painFactor>
+                <regeneration>350</regeneration>
+                <totalBleedFactor>0</totalBleedFactor>
+                <overrideTooltip>This monster has absorbed enough human souls to become godlike. It is nearly immortal, wields impossible combat strength, and possesses incredible determination.</overrideTooltip>
+            </li>
+        </stages>
+    </HediffDef>
+</Defs>

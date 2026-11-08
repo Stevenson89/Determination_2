@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <WorkGiverDef>
+        <defName>ExtractSoul</defName>
+        <workType>Hauling</workType>
+        <giverClass>Determination.WorkGiver_ExtractSoul</giverClass>
+        <priorityInType>70</priorityInType>
+        <emergency>false</emergency>
+        <verb>extract</verb>
+        <gerund>extracting</gerund>
+    </WorkGiverDef>
+
+    <WorkGiverDef>
+        <defName>ExtractFromSoul</defName>
+        <workType>Hauling</workType>
+        <giverClass>Determination.WorkGiver_ExtractFromSoul</giverClass>
+        <priorityInType>71</priorityInType>
+        <emergency>false</emergency>
+        <verb>extract</verb>
+        <gerund>extracting</gerund>
+    </WorkGiverDef>
+</Defs>

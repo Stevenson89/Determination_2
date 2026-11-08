@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <ResearchTabDef>
+        <defName>SoulScience</defName>
+        <label>soul science</label>
+        <generalTitle>soul research projects</generalTitle>
+        <generalDescription>Unlock new ways of interacting with the SOUL.</generalDescription>
+    </ResearchTabDef>
+
+    <ResearchProjectDef>
+        <defName>SoulBasics</defName>
+        <label>soul understanding</label>
+        <description>Unlocks the new 'soul' tab on pawns. This menu shows more details regarding the SOUL of the selected pawn. This research also establishes an understanding of the fundamentals needed to proceed with soul science.</description>
+        <tab>SoulScience</tab>
+        <baseCost>400</baseCost>
+        <researchViewX>0</researchViewX>
+        <researchViewY>3</researchViewY>
+        <techLevel>Neolithic</techLevel>
+        <generalRules>
+            <rulesStrings>
+            <li>subject->soul</li>
+
+            <li>subject_story->studied early myths of the power of the soul</li>
+            <li>subject_story->pondered the nature of living essence</li>
+            <li>subject_story->witnessed a soul being absorbed from a fresh corpse</li>
+
+            <li>subject_gerund->unlocking the soul's power</li>
+            </rulesStrings>
+        </generalRules>
+    </ResearchProjectDef>
+
+    <ResearchProjectDef>
+        <defName>SoulExtraction</defName>
+        <label>soul extraction</label>
+        <description>Allows for the creation of soul containers, capable of safely storing a human soul.</description>
+        <tab>SoulScience</tab>
+        <baseCost>600</baseCost>
+        <prerequisites>
+            <li>SoulBasics</li>
+            <li>Machining</li>
+        </prerequisites>
+        <researchViewX>1.00</researchViewX>
+        <researchViewY>3.00</researchViewY>
+        <techLevel>Industrial</techLevel>
+        <generalRules>
+            <rulesStrings>
+            <li>subject->soul</li>
+
+            <li>subject_story->removed a soul from a dead body</li>
+            <li>subject_story->placed a soul into a container</li>
+            <li>subject_story->absorbed a soul from a container</li>
+
+            <li>subject_gerund->extracting the soul</li>
+            </rulesStrings>
+        </generalRules>
+    </ResearchProjectDef>
+
+    <ResearchProjectDef>
+        <defName>DeterminationExtraction</defName>
+        <label>determination extraction</label>
+        <description>Extract liquid determination from contained human souls.</description>
+        <tab>SoulScience</tab>
+        <baseCost>1200</baseCost>
+        <prerequisites>
+            <li>SoulExtraction</li>
+        </prerequisites>
+        <researchViewX>2</researchViewX>
+        <researchViewY>3</researchViewY>
+        <techLevel>Industrial</techLevel>
+        <generalRules>
+            <rulesStrings>
+            <li>subject->determination</li>
+
+            <li>subject_story->extracted determination from a soul</li>
+            <li>subject_story->saved a soulless individual with a determination injection</li>
+
+            <li>subject_gerund->extracting determination</li>
+            </rulesStrings>
+        </generalRules>
+    </ResearchProjectDef>
+
+</Defs>

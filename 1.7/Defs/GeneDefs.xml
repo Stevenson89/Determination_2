@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <GeneDef>
+        <defName>MagicBiology</defName>
+        <label>magical biology</label>
+        <labelShortAdj>magic-biology</labelShortAdj>
+        <description>Carriers of this gene have bodies made almost entirely of magic. They disintegrate into nothingness shortly after death, and their souls are destroyed instantly.</description>
+        <iconPath>UI/Icons/Genes/Gene_MagicBiology</iconPath>
+        <displayOrderInCategory>31</displayOrderInCategory>
+        <statOffsets>
+            <KillingIntentVulnerability>10</KillingIntentVulnerability>
+        </statOffsets>
+        <biostatMet>6</biostatMet>
+        <biostatCpx>2</biostatCpx>
+        <symbolPack>
+            <prefixSymbols>
+                <li><symbol>magi</symbol></li>
+            </prefixSymbols>
+        </symbolPack>
+        <displayCategory>Healing</displayCategory>
+        <modExtensions>
+            <li Class="Determination.DeterminationModExtension">
+                <dustOnDeath>true</dustOnDeath>
+                <monsterDeterminationOverload>true</monsterDeterminationOverload>
+                <monsterSoul>true</monsterSoul>
+            </li>
+        </modExtensions>
+    </GeneDef>
+</Defs>

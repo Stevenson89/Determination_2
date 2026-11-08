@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <RecipeDef ParentName="SurgeryFlesh">
+        <defName>ReduceDetermination</defName>
+        <label>reduce determination</label>
+        <description>Through careful bloodletting in specific veins, reduce the determination of the patient. This can prevent amalgamation, but in most cases it must be done regularly. It also causes a moderate amount of blood loss in the process.</description>
+        <workerClass>Determination.Recipe_ReduceDetermination</workerClass>
+        <jobString>Removing excess determination.</jobString>
+        <workAmount>500</workAmount>
+        <hideBodyPartNames>true</hideBodyPartNames>
+        <targetsBodyPart>false</targetsBodyPart>
+        <isViolation>false</isViolation>
+        <descriptionHyperlinks>
+            <HediffDef>DeterminationOverload</HediffDef>
+        </descriptionHyperlinks>
+        <anesthetize>false</anesthetize>
+        <workSkillLearnFactor>2</workSkillLearnFactor>
+        <researchPrerequisite>SoulBasics</researchPrerequisite>
+    </RecipeDef>
+</Defs>

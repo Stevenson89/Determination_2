@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <JobDef>
+        <defName>AbsorbSoul</defName>
+        <driverClass>Determination.JobDriver_AbsorbSoul</driverClass>
+        <reportString>absorbing soul.</reportString>
+    </JobDef>
+
+    <JobDef>
+        <defName>AbsorbSoulFromContainer</defName>
+        <driverClass>Determination.JobDriver_AbsorbSoulFromContainer</driverClass>
+        <reportString>absorbing soul.</reportString>
+    </JobDef>
+    
+    <JobDef>
+        <defName>ExtractSoul</defName>
+        <driverClass>Determination.JobDriver_ExtractSoulToContainer</driverClass>
+        <reportString>extracting a soul.</reportString>
+    </JobDef>
+    
+    <JobDef>
+        <defName>ExtractFromSoul</defName>
+        <driverClass>Determination.JobDriver_ExtractFromSoul</driverClass>
+        <reportString>extracting determination from a soul.</reportString>
+    </JobDef>
+</Defs>

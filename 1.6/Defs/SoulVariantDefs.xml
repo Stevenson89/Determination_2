@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <Determination.SoulVariantDef Name="SoulVariantBase" Abstract="True">
+        <statOffsetsPerLV>
+            <IncomingDamageFactor>-0.04</IncomingDamageFactor>
+            <MeleeDamageFactor>0.05</MeleeDamageFactor>
+        </statOffsetsPerLV>
+        <statOffsets>
+            <Determination>0.65</Determination>
+        </statOffsets>
+        <soulless>false</soulless>
+    </Determination.SoulVariantDef>
+
+    <!-- Soulless-->
+    <Determination.SoulVariantDef Name="SoullessBase" ParentName="SoulVariantBase" Abstract="True">
+        <defName>SoullessBase</defName>
+        <label>soulless</label>
+        <description>Through deliberate extraction or reckless tampering with the laws of nature, this creature has ended up soulless.</description>
+        <soulless>true</soulless>
+        <statOffsets Inherit="False"></statOffsets>
+    </Determination.SoulVariantDef>
+
+    <Determination.SoulVariantDef ParentName="SoullessBase">
+        <defName>SoullessHuman</defName>
+        <type>Human</type>
+    </Determination.SoulVariantDef>
+
+    <Determination.SoulVariantDef ParentName="SoullessBase">
+        <defName>SoullessMonster</defName>
+        <type>Monster</type>
+    </Determination.SoulVariantDef>
+
+    <!-- Individuality -->
+    <Determination.SoulVariantDef ParentName="SoulVariantBase">
+        <defName>Indiv_Friendship</defName>
+        <label>friendship</label>
+        <description>This soul just wants to be friends with everyone.</description>
+        <type>Individuality</type>
+        <statOffsets>
+            <SocialImpact>0.2</SocialImpact>
+            <NegotiationAbility>0.2</NegotiationAbility>
+        </statOffsets>
+        <aptitudes>
+            <Social>2</Social>
+        </aptitudes>
+    </Determination.SoulVariantDef>
+
+    <Determination.SoulVariantDef ParentName="SoulVariantBase">
+        <defName>Indiv_Bloodlust</defName>
+        <label>bloodlust</label>
+        <description>This soul wants blood.</description>
+        <type>Individuality</type>
+        <aptitudes>
+            <Melee>2</Melee>
+            <Shooting>2</Shooting>
+        </aptitudes>
+        <statOffsets>
+            <ExpGain>0.5</ExpGain>
+        </statOffsets>
+    </Determination.SoulVariantDef>
+
+    <Determination.SoulVariantDef ParentName="SoulVariantBase">
+        <defName>Indiv_Cold</defName>
+        <label>cold</label>
+        <description>This soul, while technically healthy, lacks any empathy.</description>
+        <type>Individuality</type>
+        <aptitudes>
+            <Social>2</Social>
+            <Shooting>1</Shooting>
+        </aptitudes>
+    </Determination.SoulVariantDef>
+
+    <!-- Patience -->
+    <Determination.SoulVariantDef ParentName="SoulVariantBase">
+        <defName>Patience_Calm</defName>
+        <label>calm</label>
+        <description>This soul is calm and composed.</description>
+        <type>Patience</type>
+        <statFactors>
+            <LifespanFactor>1.1</LifespanFactor>
+        </statFactors>
+        <statOffsets>
+            <MentalBreakThreshold>-0.05</MentalBreakThreshold>
+        </statOffsets>
+    </Determination.SoulVariantDef>
+
+    <!-- Bravery -->
+    <Determination.SoulVariantDef ParentName="SoulVariantBase">
+        <defName>Bravery_Bold</defName>
+        <label>bold</label>
+        <description>This soul is difficult to intimidate.</description>
+        <type>Bravery</type>
+        <aptitudes>
+            <Melee>3</Melee>
+        </aptitudes>
+        <statFactors>
+            <MeleeCooldownFactor>0.7</MeleeCooldownFactor>
+        </statFactors>
+        <!-- If combat extended compatability is added, this pawn should be harder to suppress. -->
+    </Determination.SoulVariantDef>
+
+    <!-- Integrity -->
+    <Determination.SoulVariantDef ParentName="SoulVariantBase">
+        <defName>Integrity_True</defName>
+        <label>true</label>
+        <description>This soul never tells a lie.</description>
+        <type>Integrity</type>
+        <statFactors>
+            <NegotiationAbility>1.5</NegotiationAbility> <!-- This pawn is seen as trustworthy, making them better at recruitment and peace talks, but grants no bonus to trade price. -->
+        </statFactors>
+    </Determination.SoulVariantDef>
+
+    <!-- Perseverance -->
+    <Determination.SoulVariantDef ParentName="SoulVariantBase">
+        <defName>Perseverance_Steadfast</defName>
+        <label>steadfast</label>
+        <description>This soul is resilient both physically and mentally.</description>
+        <type>Perseverance</type>
+        <statOffsets>
+            <MentalBreakThreshold>-0.05</MentalBreakThreshold>
+        </statOffsets>
+        <statFactors>
+            <IncomingDamageFactor>0.9</IncomingDamageFactor>
+        </statFactors>
+    </Determination.SoulVariantDef>
+
+    <!-- Kindness -->
+    <Determination.SoulVariantDef ParentName="SoulVariantBase">
+        <defName>Kindness_Healer</defName>
+        <label>healer</label>
+        <description>This soul's kindness manifests through tending to wounds and illnesses.</description>
+        <type>Kindness</type>
+        <aptitudes>
+            <Medicine>3</Medicine>
+        </aptitudes>
+        <statFactors>
+            <MedicalTendQuality>1.2</MedicalTendQuality>
+        </statFactors>
+    </Determination.SoulVariantDef>
+
+    <!-- Justice -->
+    <Determination.SoulVariantDef ParentName="SoulVariantBase">
+        <defName>Justice_Upstanding</defName>
+        <label>fair</label>
+        <description>This soul holds itself to the highest moral standards of all.</description>
+        <type>Justice</type>
+        <statOffsets>
+            <MentalBreakThreshold>-0.07</MentalBreakThreshold>
+        </statOffsets>
+    </Determination.SoulVariantDef>
+
+    <!-- Monster -->
+    <Determination.SoulVariantDef ParentName="SoulVariantBase">
+        <defName>Monster</defName>
+        <label>monster</label>
+        <description>A monster soul. It possesses many positive attributes in equal measure, but none are strong enough to cause bonuses.</description>
+        <type>Monster</type>
+    </Determination.SoulVariantDef>
+</Defs>

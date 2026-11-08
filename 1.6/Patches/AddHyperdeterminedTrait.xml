@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <Operation Class="PatchOperationInsert">
+    <xpath>Defs/TraitDef[defName="Nerves"]/degreeDatas/li[label="iron-willed"]</xpath>
+    <value>
+        <li>
+            <label>hyperdetermined</label>
+            <description>[PAWN_nameDef]'s will is nearly impossible to break. [PAWN_pronoun] wields extraordinary determination.</description>
+            <degree>3</degree>
+            <statOffsets>
+                <MentalBreakThreshold>-0.25</MentalBreakThreshold>
+            </statOffsets>
+            <statFactors>
+                <CertaintyLossFactor MayRequire="Ludeon.RimWorld.Ideology">0.25</CertaintyLossFactor>
+            </statFactors>
+        </li>
+    </value>
+    </Operation>
+</Patch>

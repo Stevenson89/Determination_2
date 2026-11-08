@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <StatDef>
+        <defName>ExpGain</defName>
+        <label>EXP gain factor</label>
+        <description>How strong this creature's will to hurt is. Acts as a multiplier on all gained EXP.</description>
+        <offsetLabel>EXP gain factor offset</offsetLabel>
+        <category>PawnMisc</category>
+        <showOnDefaultValue>true</showOnDefaultValue>
+        <defaultBaseValue>1</defaultBaseValue>
+        <minValue>0</minValue>
+        <toStringStyle>PercentZero</toStringStyle>
+        <cacheable>true</cacheable>
+    </StatDef>
+    <StatDef>
+        <defName>Determination</defName>
+        <label>determination</label>
+        <description>The will of this creature to keep living.</description>
+        <offsetLabel>determination offset</offsetLabel>
+        <category>PawnMisc</category>
+        <showOnDefaultValue>true</showOnDefaultValue>
+        <defaultBaseValue>0</defaultBaseValue>
+        <minValue>0</minValue>
+        <toStringStyle>PercentZero</toStringStyle>
+        <cacheable>true</cacheable>
+        <workerClass>Determination.StatWorker_Determination</workerClass>
+    </StatDef>
+    <StatDef>
+        <defName>KillingIntent</defName>
+        <label>killing intent</label>
+        <description>The will of this creature to cause harm to others.</description>
+        <offsetLabel>killing intent offset</offsetLabel>
+        <category>PawnMisc</category>
+        <showOnDefaultValue>true</showOnDefaultValue>
+        <defaultBaseValue>1</defaultBaseValue>
+        <minValue>0</minValue>
+        <toStringStyle>PercentZero</toStringStyle>
+        <cacheable>true</cacheable>
+        <workerClass>Determination.StatWorker_KillingIntent</workerClass>
+    </StatDef>
+    <StatDef>
+        <defName>KillingIntentVulnerability</defName>
+        <label>killing intent vulnerability</label>
+        <description>How physically vulnerable this creature is towards an attacker with intent to kill.</description>
+        <offsetLabel>killing intent vulnerability offset</offsetLabel>
+        <category>PawnMisc</category>
+        <showOnDefaultValue>true</showOnDefaultValue>
+        <defaultBaseValue>0</defaultBaseValue>
+        <minValue>0</minValue>
+        <toStringStyle>PercentZero</toStringStyle>
+        <cacheable>true</cacheable>
+    </StatDef>
+</Defs>

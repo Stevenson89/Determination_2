@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <ThingDef ParentName="ResourceBase">
+        <defName>DeterminationSyringe</defName>
+        <label>determination syringe</label>
+        <description>A specially made syringe containing pure liquid determination. It can reverse a determination deficiency, or be used to empower a creature to perform feats of determination that would normally be impossible. Using this on a monster is not recommended.</description>
+        <graphicData>
+            <texPath>Things/Item/DeterminationSyringe</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>0.8</drawSize>
+        </graphicData>
+        <ingestible>
+            <preferability>NeverForNutrition</preferability>
+            <maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
+            <defaultNumToIngestAtOnce>1</defaultNumToIngestAtOnce>
+            <drugCategory>Medical</drugCategory>
+            <foodType>Processed</foodType>
+            <baseIngestTicks>100</baseIngestTicks>
+            <humanlikeOnly>true</humanlikeOnly>
+            <chairSearchRadius>0</chairSearchRadius>
+            <ingestSound>Ingest_Pill</ingestSound>
+            <ingestHoldUsesTable>false</ingestHoldUsesTable>
+            <ingestCommandString>Ingest {0}</ingestCommandString>
+            <ingestReportString>Ingesting {0}.</ingestReportString>
+            <showIngestFloatOption>false</showIngestFloatOption>
+            <outcomeDoers>
+                <li Class="IngestionOutcomeDoer_UseThing" />
+            </outcomeDoers>
+        </ingestible>
+        <comps>
+            <li Class="CompProperties_Drug">
+                <listOrder>1200</listOrder>
+                <teetotalerCanConsume>true</teetotalerCanConsume>
+            </li>
+            <li Class="CompProperties_Usable">
+                <useLabel>Use {0_label}</useLabel>
+                <useJob>Ingest</useJob>
+                <showUseGizmo>true</showUseGizmo>
+                <allowedMutants>
+                    <li MayRequire="Ludeon.RimWorld.Anomaly">Ghoul</li>
+                </allowedMutants>
+            </li>
+            <li Class="CompProperties_UseEffectAddHediff">
+                <hediffDef>DeterminationOverload</hediffDef>
+                <allowRepeatedUse>true</allowRepeatedUse>
+            </li>
+            <li Class="CompProperties_UseEffectPlaySound">
+                <soundOnUsed>MechSerumUsed</soundOnUsed>
+            </li>
+        </comps>
+        <stackLimit>1</stackLimit>
+        <healthAffectsPrice>false</healthAffectsPrice>
+        <uiIconForStackCount>1</uiIconForStackCount>
+        <soundInteract>Standard_Drop</soundInteract>
+        <soundDrop>Standard_Drop</soundDrop>
+        <statBases>
+            <MaxHitPoints>60</MaxHitPoints>
+            <MarketValue>32</MarketValue>
+            <Mass>0.2</Mass>
+            <Flammability>0.6</Flammability>
+            <DeteriorationRate>2.0</DeteriorationRate>
+        </statBases>
+        <thingCategories>
+            <li>Medicine</li>
+        </thingCategories>
+        <orderedTakeGroup>Medicine</orderedTakeGroup>
+    </ThingDef>
+
+    <ThingDef>
+        <defName>SoulContainer</defName>
+        <label>soul container</label>
+        <description>A container designed to keep a single human soul safe indefinitely.</description>
+        <thingClass>ThingWithComps</thingClass>
+        <category>Item</category>
+        <drawerType>MapMeshAndRealTime</drawerType>
+        <useHitPoints>true</useHitPoints>
+        <techLevel>Industrial</techLevel>
+        <selectable>true</selectable>
+        <altitudeLayer>Item</altitudeLayer>
+        <tickerType>Normal</tickerType>
+        <alwaysHaulable>true</alwaysHaulable>
+        <pathCost>14</pathCost>
+        <allowedArchonexusCount>1</allowedArchonexusCount>
+        <rotatable>false</rotatable>
+        <graphicData>
+            <texPath>Things/Item/HeartContainer</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <color>(255, 255, 255)</color>
+        </graphicData>
+        <statBases>
+            <MaxHitPoints>12</MaxHitPoints>
+            <Flammability>0</Flammability>
+            <Beauty>-4</Beauty>
+            <DeteriorationRate>0</DeteriorationRate>
+            <WorkToMake>250</WorkToMake>
+            <Mass>1</Mass>
+        </statBases>
+        <comps>
+            <li Class="CompProperties_Forbiddable"/>
+            <li Class="Determination.CompProperties_CompSoulContainer"/>
+        </comps>
+        <recipeMaker>
+            <researchPrerequisite>SoulExtraction</researchPrerequisite>
+            <recipeUsers>
+                <li>TableMachining</li>
+            </recipeUsers>
+            <skillRequirements>
+                <Crafting>6</Crafting>
+            </skillRequirements>
+            <displayPriority>80</displayPriority>
+            <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+            <workSkill>Crafting</workSkill>
+            <effectWorking>Smith</effectWorking>
+            <soundWorking>Recipe_Machining</soundWorking>
+        </recipeMaker>
+        <costList>
+            <Steel>50</Steel>
+            <ComponentIndustrial>2</ComponentIndustrial>
+        </costList>
+        <thingCategories>
+            <li>SoulScience</li>
+        </thingCategories>
+    </ThingDef>
+
+</Defs>

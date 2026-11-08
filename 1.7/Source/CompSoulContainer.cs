@@ -1,0 +1,109 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using UnityEngine;
+using Verse;
+
+namespace Determination
+{
+    public class CompSoulContainer : ThingComp
+    {
+        public SoulVariantDef soul;
+        public bool extractAllowed = false;
+        public float determination = 1.0f;
+        
+        private static Material SoulUnderlayMat(SoulVariantDef soul) {
+            Material mat = MaterialPool.MatFrom("Misc/soul", ShaderDatabase.Transparent);
+            mat.SetColor("_Color", soul.type.color);
+            return mat;
+        }
+
+        public bool HasSoul
+        {
+            get
+            {
+                return soul != null;
+            }
+        }
+
+        public void DrawUnderlay(Vector3 pos)
+        {
+            Matrix4x4 matrix = default;
+            matrix.SetTRS(pos, Quaternion.identity, new Vector3(parent.def.size.x / 3f, 1f, parent.def.size.z / 3f));
+
+            Graphics.DrawMesh(MeshPool.plane10, matrix, SoulUnderlayMat(soul), 0);
+        }
+
+        public override void PostDraw()
+        {
+            base.PostDraw();
+            if (HasSoul && parent.Spawned)
+            {
+                Vector3 drawPos = parent.DrawPos;
+                drawPos.y -= 0.005f; // lower altitude = drawn beneath the parent's own graphic
+                DrawUnderlay(drawPos);
+            }
+        }
+
+        public override string CompInspectStringExtra()
+        {
+            if (HasSoul)
+            {
+                return "DT_Determination".Translate(determination * 100f);
+            }
+            return "";
+        }
+
+        public override string GetDescriptionPart()
+        {
+            string part = "";
+            if (HasSoul)
+            {
+                part += soul.description + "\n";
+                part += "DT_Determination".Translate(determination * 100f);
+            }
+            else
+            {
+                part += "DT_EmptySoulContainer".Translate() + "\n";
+            }
+            return part;
+        }
+
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Defs.Look(ref soul, "soul");
+            Scribe_Values.Look(ref extractAllowed, "extractAllowed");
+            Scribe_Values.Look(ref determination, "determination");
+        }
+
+        public override void CompTickRare()
+        {
+            if (HasSoul)
+            {
+                determination = Mathf.Clamp(determination + 0.01f, 0f, 1f);
+            }
+        }
+
+        public override IEnumerable<Gizmo> CompGetGizmosExtra()
+        {
+            if (SoulResearchDefOf.DeterminationExtraction.IsFinished)
+            {
+                yield return new Command_Toggle
+                {
+                    defaultLabel = "Extract",
+                    defaultDesc = "Toggle automatic extraction of determination from this soul",
+                    icon = ContentFinder<Texture2D>.Get("Things/Item/DeterminationSyringe"),
+                    activateIfAmbiguous = false,
+                    isActive = () => extractAllowed,
+                    toggleAction = () =>
+                    {
+                        extractAllowed = !extractAllowed;
+                    }
+                };
+            }
+        }
+    }
+}

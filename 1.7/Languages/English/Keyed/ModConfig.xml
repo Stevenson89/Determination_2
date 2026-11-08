@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+    <DT_DeterminationModName>Determination</DT_DeterminationModName>
+    <DT_AutoAssignMonsters>Automatically assign monster xenotypes</DT_AutoAssignMonsters>
+    <DT_FatalDeterminationDeficiency>Determination deficiency is fatal</DT_FatalDeterminationDeficiency>
+    <DT_KillingIntentFactor>Killing intent factor: {0} (Default: 1)</DT_KillingIntentFactor>
+    <DT_KillingIntentFactorTooltip>How much killing intent affects damage dealt to monsters.</DT_KillingIntentFactorTooltip>
+</LanguageData>

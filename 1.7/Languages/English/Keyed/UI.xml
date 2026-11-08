@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+    <DT_SoulHeader>{0} ({1})</DT_SoulHeader>
+    <DT_SoulIconTip>Soul: {0} ({1})</DT_SoulIconTip>
+    <DT_SoulStatModifier>Soul type</DT_SoulStatModifier>
+    <DT_Soul>Soul</DT_Soul>
+    <DT_EXPUpMote>{0} EXP</DT_EXPUpMote>
+    <DT_LVUpMote>LV {0}</DT_LVUpMote>
+    <DT_LVModifiers>Modifiers from LV:</DT_LVModifiers>
+    <DT_ExpProgress>LV {0}: {1}/{2}</DT_ExpProgress>
+    <DT_ExpProgress_MaxLV>LV {0} (Max)</DT_ExpProgress_MaxLV>
+    <DT_Determination>Determination: {0}%</DT_Determination>
+    <DT_EmptySoulContainer>This container is currently empty.</DT_EmptySoulContainer>
+    <DT_AbsorbSoul>Absorb soul</DT_AbsorbSoul>
+    <DT_NotEnoughDetermination>Not enough determination</DT_NotEnoughDetermination>
+    <DT_Disintegrating>Disintegrating</DT_Disintegrating>
+
+</LanguageData>

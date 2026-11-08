@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/TraitDef[defName="Psychopath"]</xpath>
+        <value>
+            <li Class="Determination.DeterminationModExtension">
+                <forcedSoulVariant>Indiv_Cold</forcedSoulVariant>
+            </li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/TraitDef[defName="Psychopath"]/degreeDatas/li</xpath>
+        <value>
+            <statOffsets>
+                <ExpGain>0.25</ExpGain>
+            </statOffsets>
+        </value>
+    </Operation>
+</Patch>
