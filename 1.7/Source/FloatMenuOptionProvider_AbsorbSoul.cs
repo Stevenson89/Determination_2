@@ -41,6 +41,8 @@ namespace Determination
                 {
                     return null;
                 }
+                if (soulContainer.soul == null)
+                    return null;
                 if (!SoulUtilities.CanAbsorbSoul(context.FirstSelectedPawn, soulContainer.soul))
                 {
                     return null;
