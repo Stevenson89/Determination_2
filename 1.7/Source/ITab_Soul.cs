@@ -85,7 +85,7 @@ namespace Determination
             {
                 if (pair.Value == Soul.Loyalty.LOYAL)
                 {
-                    sb.Append(pair.Key.Name);
+                    sb.Append(pair.Key.ShortName);
                     sb.Append(", ");
                 }
             }
@@ -97,7 +97,7 @@ namespace Determination
             {
                 if (pair.Value == Soul.Loyalty.DISLOYAL)
                 {
-                    sb.Append(pair.Key.Name);
+                    sb.Append(pair.Key.ShortName);
                     sb.Append(", ");
                 }
             }

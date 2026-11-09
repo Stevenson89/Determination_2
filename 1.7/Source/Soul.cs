@@ -11,6 +11,7 @@ namespace Determination
     {
         public Pawn? OriginalPawn;
         public Name? Name;
+        public string? ShortName => Name?.ToStringShort;
         public string? Title;
         public BackstoryDef? ChildhoodBackstory;
         public BackstoryDef? AdultBackstory;
