@@ -2,5 +2,10 @@
 <LanguageData>
 
     <MessageCannotStartDeterminationReduction>{PAWN_nameDef} doesn't have enough blood to safely do bloodletting.</MessageCannotStartDeterminationReduction>
-
+    <DT_FrictionCausedMentalBreak>Soul friction</DT_FrictionCausedMentalBreak>
+    <DT_SoullessLetterTitle>{0} soulless</DT_SoullessLetterTitle>
+    <DT_SoullessLetterBody>{0} has lost their soul. As a result, they will need regular injections of Determination (once every ~10 days) to survive. They have also become a psychopath. Both of these effects will be reversed if their original soul is ever recovered.</DT_SoullessLetterBody>
+    <DT_RebellionLetterTitle>Soul Rebellion</DT_RebellionLetterTitle>
+    <DT_RebellionLetterBody>The souls absorbed by {0} have rebelled. They have fled the body and left {0} gravely weakened.</DT_RebellionLetterBody>
+    
 </LanguageData>

@@ -46,6 +46,55 @@
         </stages>
     </HediffDef>
 
+    <HediffDef>
+        <defName>RebellionShock</defName>
+        <label>soul rebellion shock</label>
+        <labelNoun>soul rebellion shock</labelNoun>
+        <description>The souls that this individual once controlled have rebelled. In their absence the body is struggling to sustain its basic functions.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <defaultLabelColor>(1,0.2,0.2)</defaultLabelColor>
+        <initialSeverity>1</initialSeverity>
+        <alwaysShowSeverity>true</alwaysShowSeverity>
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-2</severityPerDay>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <label>wearing off</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                </capMods>
+            </li>
+            <li>
+                <label>dazed</label>
+                <minSeverity>0.5</minSeverity>
+                <painOffset>0.1</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.75</setMax>
+                    </li>
+                </capMods>
+            </li>
+            <li>
+                <label>weakened</label>
+                <minSeverity>0.75</minSeverity>
+                <painOffset>0.2</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.5</setMax>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
+
     <!-- Determination-->
     <HediffDef>
         <defName>DeterminationOverload</defName>

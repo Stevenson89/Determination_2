@@ -20,6 +20,7 @@ namespace Determination
         public static HediffDef MonsterDeterminationOverload;
         public static HediffDef FallenMonster;
         public static HediffDef BossMonsterSoulAbsorbed;
+        public static HediffDef RebellionShock;
         static SoulHediffDefOf() => DefOfHelper.EnsureInitializedInCtor(typeof(SoulHediffDefOf));
     }
 }

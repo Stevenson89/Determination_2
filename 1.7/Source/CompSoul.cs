@@ -19,6 +19,9 @@ namespace Determination
         private int _EXP = 0;
         public float LVTolerance = 0f;
         private bool isbeingloaded = false;
+        private Dictionary<Soul, Soul.Loyalty> loyalties = [];
+        public float Friction = 0f;
+        public float LastFrictionChange = 0f;
         public Pawn pawn
         {
             get
@@ -248,6 +251,82 @@ namespace Determination
             if (pawn.Dead && pawn.Corpse.Age > 7500) // A soul remains in the body for ~3 ingame hours.
             {
                 SoulUtilities.MakeSoulless(pawn);
+            }
+            if (ExtraSouls.Count > 0)
+                TickLoyalty();
+        }
+        public void StartRebellion()
+        {
+            pawn.health.AddHediff(SoulHediffDefOf.RebellionShock);
+            ExtraSouls.Clear();
+            SoulUtilities.UpdatePawnSoulHediff(pawn);
+            Find.LetterStack.ReceiveLetter("DT_RebellionLetterTitle".Translate(), "DT_RebellionLetterBody".Translate(pawn.NameFullColored), LetterDefOf.NegativeEvent);
+        }
+        const float REDUCTION_ON_BREAK = 25f;
+        const float MINOR_BREAK_THRESHOLD = 50f;
+        const float MAJOR_BREAK_THRESHOLD = 75f;
+        const float REBELLION_THRESHOLD = 100f;
+        int nextMinorBreakAllowedOn = 0;
+        int nextMajorBreakAllowedOn = 0;
+        const int COOLDOWN = 900000; // 1 Quadrum
+        private MentalBreakDef? getRandomMentalBreak(MentalBreakIntensity intensity)
+        {
+            MentalBreakDef? stateDef;
+            DefDatabase<MentalBreakDef>.AllDefsListForReading.Where(x =>
+            {
+                if (!x.Worker.BreakCanOccur(pawn))
+                    return false;
+                return x.intensity == intensity;
+            }).TryRandomElementByWeight(x => x.Worker.CommonalityFor(pawn), out stateDef);
+            return stateDef;
+        }
+        public void TickLoyalty()
+        {
+            if (!pawn.IsColonist && !pawn.IsPrisonerOfColony && !pawn.IsSlaveOfColony)
+            {
+                return;
+            }
+            // Recalculate loyalties
+            foreach (Soul soul in ExtraSouls)
+            {
+                loyalties[soul] = soul.GetLoyaltyTo(pawn);
+            }
+
+            // Calculate friction change
+            float change = 0f;
+            foreach (KeyValuePair<Soul, Soul.Loyalty> pair in loyalties)
+            {
+                if (pair.Value == Soul.Loyalty.LOYAL)
+                    change += pair.Key.Determination;
+                else
+                    change -= pair.Key.Determination;
+            }
+            change += Determination; // Factor in host determination
+            Friction += change;
+            LastFrictionChange = change;
+
+            // Apply friction effects
+            if (Friction >= MINOR_BREAK_THRESHOLD && Find.TickManager.TicksAbs <= nextMinorBreakAllowedOn)
+            {
+                Friction -= REDUCTION_ON_BREAK;
+                nextMinorBreakAllowedOn = Find.TickManager.TicksAbs + COOLDOWN;
+                MentalBreakDef? mentalBreak = getRandomMentalBreak(MentalBreakIntensity.Minor);
+                mentalBreak?.Worker.TryStart(pawn, "DT_FrictionCausedMentalBreak".Translate().Resolve(), false);
+            }
+            if (Friction >= MAJOR_BREAK_THRESHOLD && Find.TickManager.TicksAbs <= nextMajorBreakAllowedOn)
+            {
+                Friction -= REDUCTION_ON_BREAK;
+                nextMinorBreakAllowedOn = Find.TickManager.TicksAbs + COOLDOWN;
+                nextMajorBreakAllowedOn = Find.TickManager.TicksAbs + COOLDOWN;
+                MentalBreakDef? mentalBreak = getRandomMentalBreak(MentalBreakIntensity.Major);
+                mentalBreak?.Worker.TryStart(pawn, "DT_FrictionCausedMentalBreak".Translate().Resolve(), false);
+            }
+            if (Friction >= REBELLION_THRESHOLD)
+            {
+                Friction = 0f;
+                nextMinorBreakAllowedOn = 0;
+                nextMajorBreakAllowedOn = 0;
+                StartRebellion();
             }
         }
     }

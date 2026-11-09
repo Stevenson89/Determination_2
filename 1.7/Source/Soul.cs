@@ -19,7 +19,6 @@ namespace Determination
         public List<SkillRecord>? Skills;
         public List<Trait> Traits;
         public Faction? Faction;
-        public Need_Mood? Mood;
         public SoulVariantDef SoulVariant;
         public float Determination;
         public bool Psychopath;
@@ -39,7 +38,6 @@ namespace Determination
             foreach (Trait trait in pawn.story.traits.allTraits)
                 Traits.Add(new Trait(trait.def, trait.Degree));
             Faction = pawn.Faction;
-            Mood = new Need_Mood(pawn);
             CompSoul compSoul = pawn.TryGetComp<CompSoul>();
             SoulVariant = compSoul.Variant;
             Determination = compSoul.Determination;
@@ -59,7 +57,6 @@ namespace Determination
             Skills = null;
             Traits = [];
             Faction = null;
-            Mood = null;
             SoulVariant = SoulVariantDefOf.SoullessHuman;
             Determination = 0f;
             Psychopath = false;
@@ -78,10 +75,21 @@ namespace Determination
             Scribe_Collections.Look(ref Skills, "Skills");
             Scribe_Collections.Look(ref Traits, "Traits");
             Scribe_References.Look(ref Faction, "Faction");
-            Scribe_Deep.Look(ref Mood, "Mood", OriginalPawn);
             Scribe_Defs.Look(ref SoulVariant, "SoulVariant");
             Scribe_Values.Look(ref Determination, "Determination");
             Scribe_Values.Look(ref Psychopath, "Psychopath");
+        }
+        
+        public enum Loyalty
+        {
+            HOST,
+            LOYAL,
+            DISLOYAL
+        }
+
+        public Loyalty GetLoyaltyTo(Pawn pawn)
+        {
+            return Loyalty.LOYAL;
         }
     }
 }
