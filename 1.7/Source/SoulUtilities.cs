@@ -88,7 +88,7 @@ namespace Determination
             if (isBoss)
                 return SoulVariantDefOf.BossMonster;
             SoulColorDef color = DefDatabase<SoulColorDef>.AllDefs.Where(s => s.monster == monster && s.canSpawn == true).RandomElement();
-            IEnumerable<SoulVariantDef> candidates = DefDatabase<SoulVariantDef>.AllDefs.Where(d => d.type == color && d.soulless == false);
+            IEnumerable<SoulVariantDef> candidates = DefDatabase<SoulVariantDef>.AllDefs.Where(d => d.type == color && d.soulless == false && d != SoulVariantDefOf.BossMonster);
             return candidates.RandomElement();
         }
         public static void MakeSoulless(Pawn pawn)

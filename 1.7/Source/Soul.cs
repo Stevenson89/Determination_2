@@ -142,13 +142,11 @@ namespace Determination
         public Loyalty GetLoyaltyTo(Pawn other)
         {
             if (Traits.ContainsAny(t => t.def == TraitDefOf.Psychopath))
-            {
                 return Loyalty.DISLOYAL;
-            }
             if (Traits.ContainsAny(t => t.def == TraitDefOf.Kind))
-            {
                 return Loyalty.LOYAL;
-            }
+            if (other.Faction.HostileTo(Faction))
+                return Loyalty.DISLOYAL;
             int? opinion = Opinions[other];
             if (opinion == null)
                 return Loyalty.LOYAL;
