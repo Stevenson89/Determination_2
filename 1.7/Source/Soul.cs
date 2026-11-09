@@ -135,7 +135,6 @@ namespace Determination
         
         public enum Loyalty
         {
-            HOST,
             LOYAL,
             DISLOYAL
         }

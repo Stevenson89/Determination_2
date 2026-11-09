@@ -257,7 +257,7 @@ namespace Determination
         }
         public void StartRebellion()
         {
-            pawn.health.AddHediff(SoulHediffDefOf.RebellionShock);
+            pawn.health.AddHediff(SoulHediffDefOf.SoulRebellion);
             ExtraSouls.Clear();
             SoulUtilities.UpdatePawnSoulHediff(pawn);
             Find.LetterStack.ReceiveLetter("DT_RebellionLetterTitle".Translate(), "DT_RebellionLetterBody".Translate(pawn.NameShortColored), LetterDefOf.NegativeEvent);

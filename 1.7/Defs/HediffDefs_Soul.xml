@@ -47,12 +47,42 @@
     </HediffDef>
 
     <HediffDef>
+        <defName>SoulRebellion</defName>
+        <label>soul rebellion</label>
+        <labelNoun>a soul rebellion</labelNoun>
+        <description>The souls that this individual once controlled are rebelling. They will punish their former captor with burns across the body before they leave forever.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <defaultLabelColor>(1,0.2,0.2)</defaultLabelColor>
+        <initialSeverity>1</initialSeverity>
+        <comps>
+            <li Class="HediffCompProperties_Disappears">
+                <disappearsAfterTicks>7500</disappearsAfterTicks>
+                <showRemainingTime>true</showRemainingTime>
+            </li>
+            <li Class="HediffCompProperties_DisappearsOnDeath"/>
+        </comps>
+        <stages>
+            <li>
+                <label>active</label>
+                <painOffset>1</painOffset>
+                <hediffGivers>
+                    <li Class="HediffGiver_Random">
+                        <hediff>Burn</hediff>
+                        <mtbDays>0.1</mtbDays>
+                        <canAffectAnyLivePart>true</canAffectAnyLivePart>
+                    </li>
+                </hediffGivers>
+            </li>
+        </stages>
+    </HediffDef>
+
+    <HediffDef>
         <defName>RebellionShock</defName>
         <label>soul rebellion shock</label>
         <labelNoun>soul rebellion shock</labelNoun>
         <description>The souls that this individual once controlled have rebelled. In their absence the body is struggling to sustain its basic functions.</description>
         <hediffClass>HediffWithComps</hediffClass>
-        <defaultLabelColor>(1,0.2,0.2)</defaultLabelColor>
+        <defaultLabelColor>(1,0.3,0.3)</defaultLabelColor>
         <initialSeverity>1</initialSeverity>
         <alwaysShowSeverity>true</alwaysShowSeverity>
         <comps>

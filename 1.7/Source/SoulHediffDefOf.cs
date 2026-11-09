@@ -21,6 +21,7 @@ namespace Determination
         public static HediffDef FallenMonster;
         public static HediffDef BossMonsterSoulAbsorbed;
         public static HediffDef RebellionShock;
+        public static HediffDef SoulRebellion;
         static SoulHediffDefOf() => DefOfHelper.EnsureInitializedInCtor(typeof(SoulHediffDefOf));
     }
 }
