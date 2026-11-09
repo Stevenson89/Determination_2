@@ -20,5 +20,9 @@
     <DT_AbsorbSoul>Absorb soul</DT_AbsorbSoul>
     <DT_NotEnoughDetermination>Not enough determination</DT_NotEnoughDetermination>
     <DT_Disintegrating>Disintegrating</DT_Disintegrating>
+    <DT_Friction>Friction: {0}</DT_Friction>
+    <DT_FrictionChange>Last change: {0}</DT_FrictionChange>
+    <DT_Loyal>Loyal:</DT_Loyal>
+    <DT_Disloyal>Disloyal:</DT_Disloyal>
 
 </LanguageData>

@@ -12,6 +12,7 @@ namespace Determination
     public class ITab_Soul : ITab
     {
         private Vector2 _scrollPosition;
+        private StringBuilder sb = new StringBuilder();
         private Pawn pawn
         {
             get
@@ -41,6 +42,7 @@ namespace Determination
             }
             SoulVariantDef variant = compSoul.Variant;
             SoulColorDef color = variant.type;
+            List<Soul> extraSouls = compSoul.ExtraSouls;
 
             string soulHeader = "DT_SoulHeader".Translate(color.LabelCap, variant.LabelCap);
             string soulDesc = variant.description;
@@ -70,6 +72,43 @@ namespace Determination
             float LVModifiersHeight = Text.CalcHeight(LVModifiers, 200f);
             float EXPTextHeight = Text.CalcHeight(EXPText, 200f);
 
+            string frictionText = "DT_Friction".Translate((compSoul.Friction / 100f).ToStringPercentSigned());
+            float frictionHeight = Text.CalcHeight(frictionText, 200f);
+            string frictionChangeText = "DT_FrictionChange".Translate((compSoul.LastFrictionChange / 100f).ToStringPercentSigned());
+            float frictionChangeHeight = Text.CalcHeight(frictionChangeText, 200f);
+            string loyalText = "DT_Loyal".Translate();
+            float loyalHeight = Text.CalcHeight(loyalText, 200f);
+            string disloyalText = "DT_Disloyal".Translate();
+            float disloyalHeight = Text.CalcHeight(disloyalText, 200f);
+            sb.Clear();
+            foreach (KeyValuePair<Soul, Soul.Loyalty> pair in compSoul.Loyalties)
+            {
+                if (pair.Value == Soul.Loyalty.LOYAL)
+                {
+                    sb.Append(pair.Key.Name);
+                    sb.Append(", ");
+                }
+            }
+            if (sb.Length >= 3)
+                sb.Remove(sb.Length - 2, 2); // Remove the comma and space from the final name
+            string loyalPawnsText = sb.ToString();
+            sb.Clear();
+            foreach (KeyValuePair<Soul, Soul.Loyalty> pair in compSoul.Loyalties)
+            {
+                if (pair.Value == Soul.Loyalty.DISLOYAL)
+                {
+                    sb.Append(pair.Key.Name);
+                    sb.Append(", ");
+                }
+            }
+            if (sb.Length >= 3)
+                sb.Remove(sb.Length - 2, 2);
+            string disloyalPawnsText = sb.ToString();
+            float loyalPawnsHeight = Text.CalcHeight(loyalPawnsText, 125f);
+            float disloyalPawnsHeight = Text.CalcHeight(disloyalPawnsText, 125f);
+            float loyalDisloyalHeight = Mathf.Max(loyalHeight, disloyalHeight);
+            float pawnsListHeight = Mathf.Max(loyalPawnsHeight, disloyalPawnsHeight);
+
             const float topPad = 10f;
             const float barHeight = 50f;
             float contentHeight = topPad + SOUL_SIZE + 16f
@@ -81,6 +120,13 @@ namespace Determination
                 + LVModifiersHeight + 30f
                 + EXPTextHeight + 10f
                 + barHeight + 20f;
+
+            if (extraSouls.Any())
+                contentHeight +=
+                    frictionHeight + 5f
+                    + frictionChangeHeight + 5f
+                    + loyalDisloyalHeight + 5f
+                    + pawnsListHeight + 20f;
 
             Rect outRect = new Rect(0f, 20f, size.x, size.y - 20f);
             Rect viewRect = new Rect(0f, 0f, outRect.width - 16f, contentHeight);
@@ -130,6 +176,25 @@ namespace Determination
             float expPercentage = nextLVEXP < 0 ? 1f : (float)thisLVEXP / nextLVEXP;
             Widgets.FillableBar(new Rect(cx - 100f, y, 200f, barHeight), expPercentage);
 
+            if (extraSouls.Any())
+            {
+                y += barHeight + 20f;
+                Widgets.Label(new Rect(cx - 100f, y, 200f, frictionHeight), frictionText);
+                y += frictionHeight + 5f;
+
+                Widgets.Label(new Rect(cx - 100f, y, 200f, frictionChangeHeight), frictionChangeText);
+                y += frictionChangeHeight + 5f;
+
+                Text.Anchor = TextAnchor.UpperLeft;
+
+                Widgets.Label(new Rect(cx - 160f, y, 125f, loyalHeight), loyalText);
+                Widgets.Label(new Rect(cx, y, 125f, disloyalHeight), disloyalText);
+                y += loyalDisloyalHeight + 5f;
+
+                Widgets.Label(new Rect(cx - 140f, y, 125f, pawnsListHeight), loyalPawnsText);
+                Widgets.Label(new Rect(cx + 20, y, 125f, pawnsListHeight), disloyalPawnsText);
+                y += pawnsListHeight + 20f;
+            }
             Widgets.EndScrollView();
 
             Text.Font = oldFont;

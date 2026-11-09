@@ -19,7 +19,7 @@ namespace Determination
         private int _EXP = 0;
         public float LVTolerance = 0f;
         private bool isbeingloaded = false;
-        private Dictionary<Soul, Soul.Loyalty> loyalties = [];
+        public Dictionary<Soul, Soul.Loyalty> Loyalties = [];
         public float Friction = 0f;
         public float LastFrictionChange = 0f;
         public Pawn pawn
@@ -289,31 +289,31 @@ namespace Determination
             // Recalculate loyalties
             foreach (Soul soul in ExtraSouls)
             {
-                loyalties[soul] = soul.GetLoyaltyTo(pawn);
+                Loyalties[soul] = soul.GetLoyaltyTo(pawn);
             }
 
             // Calculate friction change
             float change = 0f;
-            foreach (KeyValuePair<Soul, Soul.Loyalty> pair in loyalties)
+            foreach (KeyValuePair<Soul, Soul.Loyalty> pair in Loyalties)
             {
                 if (pair.Value == Soul.Loyalty.LOYAL)
-                    change += pair.Key.Determination;
-                else
                     change -= pair.Key.Determination;
+                else
+                    change += pair.Key.Determination;
             }
-            change += Determination; // Factor in host determination
-            Friction += change;
+            //change += Determination; // Factor in host determination
+            Friction = Mathf.Clamp(Friction + change, 0f, 100f);
             LastFrictionChange = change;
 
             // Apply friction effects
-            if (Friction >= MINOR_BREAK_THRESHOLD && Find.TickManager.TicksAbs <= nextMinorBreakAllowedOn)
+            if (Friction >= MINOR_BREAK_THRESHOLD && Find.TickManager.TicksAbs >= nextMinorBreakAllowedOn)
             {
                 Friction -= REDUCTION_ON_BREAK;
                 nextMinorBreakAllowedOn = Find.TickManager.TicksAbs + COOLDOWN;
                 MentalBreakDef? mentalBreak = getRandomMentalBreak(MentalBreakIntensity.Minor);
                 mentalBreak?.Worker.TryStart(pawn, "DT_FrictionCausedMentalBreak".Translate().Resolve(), false);
             }
-            if (Friction >= MAJOR_BREAK_THRESHOLD && Find.TickManager.TicksAbs <= nextMajorBreakAllowedOn)
+            if (Friction >= MAJOR_BREAK_THRESHOLD && Find.TickManager.TicksAbs >= nextMajorBreakAllowedOn)
             {
                 Friction -= REDUCTION_ON_BREAK;
                 nextMinorBreakAllowedOn = Find.TickManager.TicksAbs + COOLDOWN;
