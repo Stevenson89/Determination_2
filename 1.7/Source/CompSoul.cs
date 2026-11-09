@@ -260,7 +260,7 @@ namespace Determination
             pawn.health.AddHediff(SoulHediffDefOf.RebellionShock);
             ExtraSouls.Clear();
             SoulUtilities.UpdatePawnSoulHediff(pawn);
-            Find.LetterStack.ReceiveLetter("DT_RebellionLetterTitle".Translate(), "DT_RebellionLetterBody".Translate(pawn.NameFullColored), LetterDefOf.NegativeEvent);
+            Find.LetterStack.ReceiveLetter("DT_RebellionLetterTitle".Translate(), "DT_RebellionLetterBody".Translate(pawn.NameShortColored), LetterDefOf.NegativeEvent);
         }
         const float REDUCTION_ON_BREAK = 25f;
         const float MINOR_BREAK_THRESHOLD = 50f;
@@ -297,9 +297,9 @@ namespace Determination
             foreach (KeyValuePair<Soul, Soul.Loyalty> pair in Loyalties)
             {
                 if (pair.Value == Soul.Loyalty.LOYAL)
-                    change -= pair.Key.Determination;
+                    change -= pair.Key.Determination / 10;
                 else
-                    change += pair.Key.Determination;
+                    change += pair.Key.Determination / 10;
             }
             //change += Determination; // Factor in host determination
             Friction = Mathf.Clamp(Friction + change, 0f, 100f);

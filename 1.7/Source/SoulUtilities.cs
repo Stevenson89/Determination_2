@@ -56,6 +56,10 @@ namespace Determination
             {
                 compSoul.ExtraSouls.Add(soul);
                 UpdatePawnSoulHediff(pawn);
+                if (compSoul.ExtraSouls.Count == 1)
+                {
+                    Find.LetterStack.ReceiveLetter("DT_AbsorbedSoulLetterTitle".Translate(), "DT_AbsorbedSoulLetterBody".Translate(pawn.NameShortColored, soul.Name), LetterDefOf.NeutralEvent);
+                }
             }
         }
         public static void AbsorbSoul(Pawn pawn, Corpse corpse)
@@ -118,6 +122,7 @@ namespace Determination
             if (shock)
                 pawn.health.AddHediff(SoulHediffDefOf.SoulLossShock);
             pawn.story.traits.GainTrait(new Trait(TraitDefOf.Psychopath), true);
+            Find.LetterStack.ReceiveLetter("DT_SoullessLetterTitle".Translate(pawn.NameShortColored), "DT_SoullessLetterBody".Translate(pawn.NameShortColored), LetterDefOf.NegativeEvent);
         }
         public static void IncreasePawnSouls(Pawn pawn)
         {

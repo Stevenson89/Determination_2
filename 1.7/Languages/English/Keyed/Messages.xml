@@ -2,10 +2,16 @@
 <LanguageData>
 
     <MessageCannotStartDeterminationReduction>{PAWN_nameDef} doesn't have enough blood to safely do bloodletting.</MessageCannotStartDeterminationReduction>
-    <DT_FrictionCausedMentalBreak>Soul friction</DT_FrictionCausedMentalBreak>
+    <DT_FrictionCausedMentalBreak>This happened because of: Soul friction</DT_FrictionCausedMentalBreak>
     <DT_SoullessLetterTitle>{0} soulless</DT_SoullessLetterTitle>
     <DT_SoullessLetterBody>{0} has lost their soul. As a result, they will need regular injections of Determination (once every ~10 days) to survive. They have also become a psychopath. Both of these effects will be reversed if their original soul is ever recovered.</DT_SoullessLetterBody>
     <DT_RebellionLetterTitle>Soul Rebellion</DT_RebellionLetterTitle>
     <DT_RebellionLetterBody>The souls absorbed by {0} have rebelled. They have fled the body and left {0} gravely weakened.</DT_RebellionLetterBody>
-    
+    <DT_AbsorbedSoulLetterTitle>Soul Absorbed</DT_AbsorbedSoulLetterTitle>
+    <DT_AbsorbedSoulLetterBody>{0} has absorbed the soul of {1} and become much more powerful. This power comes with a risk however.
+
+Under the 'Soul' tab on {0}, you can now see which absorbed souls are loyal to them. Disloyal souls increase friction while loyal ones decrease it. The amount of influence over friction a soul has comes from its determination.
+
+High friction causes mental breaks. If it reaches 100% the souls will rebel.</DT_AbsorbedSoulLetterBody>
+
 </LanguageData>
