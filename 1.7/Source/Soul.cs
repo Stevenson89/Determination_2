@@ -22,6 +22,7 @@ namespace Determination
         public Need_Mood? Mood;
         public SoulVariantDef SoulVariant;
         public float Determination;
+        public bool Psychopath;
 
         public Soul(Pawn pawn)
         {
@@ -42,6 +43,7 @@ namespace Determination
             CompSoul compSoul = pawn.TryGetComp<CompSoul>();
             SoulVariant = compSoul.Variant;
             Determination = compSoul.Determination;
+            Psychopath = pawn.story.traits.HasTrait(TraitDefOf.Psychopath);
         }
 
         public Soul()
@@ -60,11 +62,12 @@ namespace Determination
             Mood = null;
             SoulVariant = SoulVariantDefOf.SoullessHuman;
             Determination = 0f;
+            Psychopath = false;
         }
 
         public void ExposeData()
         {
-            Scribe_References.Look(ref OriginalPawn, "OriginalPawn");
+            Scribe_References.Look(ref OriginalPawn, "OriginalPawn", saveDestroyedThings: true);
             Scribe_Deep.Look(ref Name, "Name");
             Scribe_Values.Look(ref Title, "Title");
             Scribe_Defs.Look(ref ChildhoodBackstory, "ChildhoodBackstory");
@@ -78,6 +81,7 @@ namespace Determination
             Scribe_Deep.Look(ref Mood, "Mood", OriginalPawn);
             Scribe_Defs.Look(ref SoulVariant, "SoulVariant");
             Scribe_Values.Look(ref Determination, "Determination");
+            Scribe_Values.Look(ref Psychopath, "Psychopath");
         }
     }
 }

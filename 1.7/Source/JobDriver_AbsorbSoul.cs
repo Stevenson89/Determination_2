@@ -29,8 +29,7 @@ namespace Determination
             yield return doAction;
             yield return Toils_General.Do(() =>
             {
-                Soul soul = SoulUtilities.ExtractSoul(((Corpse)TargetA.Thing).InnerPawn);
-                pawn.TryGetComp<CompSoul>().ExtraSouls.Add(soul);
+                SoulUtilities.AbsorbSoul(pawn, (Corpse) TargetA.Thing);
             });
         }
     }

@@ -39,6 +39,46 @@ namespace Determination
             MakeSoulless(pawn);
             return result;
         }
+        public static void AbsorbSoul(Pawn pawn, Soul soul)
+        {
+            CompSoul compSoul = pawn.TryGetComp<CompSoul>();
+            if (pawn == soul.OriginalPawn)
+            {
+                compSoul.Variant = soul.SoulVariant;
+                if (!soul.Psychopath)
+                {
+                    Trait? psychopath = pawn.story.traits.GetTrait(TraitDefOf.Psychopath);
+                    if (psychopath != null)
+                        pawn.story.traits.RemoveTrait(psychopath);
+                }
+            }
+            else
+            {
+                compSoul.ExtraSouls.Add(soul);
+                UpdatePawnSoulHediff(pawn);
+            }
+        }
+        public static void AbsorbSoul(Pawn pawn, Corpse corpse)
+        {
+            CompSoul compSoul = corpse.InnerPawn.TryGetComp<CompSoul>();
+            if (compSoul.HasSoul == false)
+            {
+                // No error message because this can happen in normal gameplay. It occurs if a pawn's soul decays during the absorption animation.
+                return;
+            }
+            Soul soul = ExtractSoul(corpse.InnerPawn);
+            AbsorbSoul(pawn, soul);
+        }
+        public static void AbsorbSoul(Pawn pawn, CompSoulContainer soulContainer)
+        {
+            if (soulContainer.soul == null)
+            {
+                Log.Error("Attempted to absorb soul from an empty soul container");
+                return;
+            }
+            AbsorbSoul(pawn, soulContainer.soul);
+            soulContainer.soul = null;
+        }
         public static SoulVariantDef GetSoul(bool monster, bool isBoss)
         {
             if (isBoss)
@@ -180,6 +220,13 @@ namespace Determination
             {
                 overload.Severity += exhaustion;
             }
+        }
+
+        public static bool CanAbsorbSoul(Pawn absorber, Soul soul)
+        {
+            if (soul.OriginalPawn == absorber)
+                return true;
+            return CanAbsorbSoul(absorber, soul.SoulVariant);
         }
 
         public static bool CanAbsorbTargetSoul(Pawn absorber, Pawn deceased)
