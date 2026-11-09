@@ -88,6 +88,9 @@
             <graphicClass>Graphic_Single</graphicClass>
             <color>(255, 255, 255)</color>
         </graphicData>
+        <inspectorTabs>
+             <li>Determination.ITab_AdvancedSoul</li>
+         </inspectorTabs>
         <statBases>
             <MaxHitPoints>12</MaxHitPoints>
             <Flammability>0</Flammability>

@@ -11,6 +11,11 @@
     <DT_ExpProgress>LV {0}: {1}/{2}</DT_ExpProgress>
     <DT_ExpProgress_MaxLV>LV {0} (Max)</DT_ExpProgress_MaxLV>
     <DT_Determination>Determination: {0}%</DT_Determination>
+    <DT_NaturalDetermination>Natural Determination: {0}%</DT_NaturalDetermination>
+    <DT_Gender>Gender: {0}</DT_Gender>
+    <DT_TraitList>Traits:</DT_TraitList>
+    <DT_Faction>Faction: {0}</DT_Faction>
+    <DT_Ideology>Ideology: {0}</DT_Ideology>
     <DT_EmptySoulContainer>This container is currently empty.</DT_EmptySoulContainer>
     <DT_AbsorbSoul>Absorb soul</DT_AbsorbSoul>
     <DT_NotEnoughDetermination>Not enough determination</DT_NotEnoughDetermination>

@@ -32,7 +32,7 @@ namespace Determination
             Toil extract = Toils_General.Wait(180)
                 .WithProgressBarToilDelay(TargetIndex.A)
                 .FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch);
-            extract.AddFinishAction(() =>
+            Toil finish = Toils_General.Do(() =>
             {
                 var corpseComp = Corpse.TryGetComp<CompExtractableSoul>();
                 var containerComp = Container.TryGetComp<CompSoulContainer>();
@@ -45,6 +45,7 @@ namespace Determination
             yield return startCarryingContainer;
             yield return carryToCorpse;
             yield return extract;
+            yield return finish;
         }
     }
 }

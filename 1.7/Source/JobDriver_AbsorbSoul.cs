@@ -26,12 +26,12 @@ namespace Determination
                 defaultDuration = 120 // ~2 in-game seconds
             };
             doAction.WithProgressBarToilDelay(TargetIndex.A);
-            doAction.AddFinishAction(() =>
+            yield return doAction;
+            yield return Toils_General.Do(() =>
             {
                 Soul soul = SoulUtilities.ExtractSoul(((Corpse)TargetA.Thing).InnerPawn);
                 pawn.TryGetComp<CompSoul>().ExtraSouls.Add(soul);
             });
-            yield return doAction;
         }
     }
 }
