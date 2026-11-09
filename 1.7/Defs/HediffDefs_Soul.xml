@@ -60,6 +60,9 @@
                 <showRemainingTime>true</showRemainingTime>
             </li>
             <li Class="HediffCompProperties_DisappearsOnDeath"/>
+            <li Class="Determination.HediffCompProperties_TurnsIntoHediff">
+                <intoHediff>RebellionShock</intoHediff>
+            </li>
         </comps>
         <stages>
             <li>
@@ -68,7 +71,7 @@
                 <hediffGivers>
                     <li Class="HediffGiver_Random">
                         <hediff>Burn</hediff>
-                        <mtbDays>0.1</mtbDays>
+                        <mtbDays>0.02</mtbDays>
                         <canAffectAnyLivePart>true</canAffectAnyLivePart>
                     </li>
                 </hediffGivers>
@@ -87,7 +90,7 @@
         <alwaysShowSeverity>true</alwaysShowSeverity>
         <comps>
             <li Class="HediffCompProperties_SeverityPerDay">
-                <severityPerDay>-2</severityPerDay>
+                <severityPerDay>-0.1</severityPerDay>
             </li>
         </comps>
         <stages>

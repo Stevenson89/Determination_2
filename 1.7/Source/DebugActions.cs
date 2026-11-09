@@ -20,6 +20,11 @@ namespace Determination
         {
             SoulUtilities.IncreasePawnSouls(pawn);
         }
+        [DebugAction("Determination", null, false, false, false, false, false, 0, false, actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        public static void StartSoulRebellion(Pawn pawn)
+        {
+            pawn.TryGetComp<CompSoul>()?.StartRebellion();
+        }
         [DebugAction("Determination", allowedGameStates = AllowedGameStates.PlayingOnMap, actionType = DebugActionType.ToolMapForPawns)]
         public static void SetSoulType(Pawn pawn)
         {
