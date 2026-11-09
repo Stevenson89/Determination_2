@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-    <packageId>DangerousJames.Determination</packageId>
+    <packageId>Determination.Core</packageId>
     <name>Determination</name>
     <author>ModThings</author>
 <description>Adds mechanics and concepts from the game Undertale! Currently it adds:
