@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace Determination
+namespace Determination.Patches
 {
     [HarmonyPatch(typeof(Pawn), nameof(Pawn.MakeCorpse), new Type[] { typeof(Building_Grave), typeof(bool), typeof(float)})]
     public class Patch_CorpseDisintegration

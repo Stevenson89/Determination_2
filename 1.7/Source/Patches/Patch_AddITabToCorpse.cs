@@ -7,7 +7,7 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace Determination
+namespace Determination.Patches
 {
     [HarmonyPatch(typeof(ThingDefGenerator_Corpses), "GenerateCorpseDef")]
     public class Patch_AddITabToCorpse

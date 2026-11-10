@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace Determination
+namespace Determination.Patches
 {
     [HarmonyPatch(typeof(Thing), nameof(Thing.TakeDamage))]
     public class Patch_ApplyKillingIntent

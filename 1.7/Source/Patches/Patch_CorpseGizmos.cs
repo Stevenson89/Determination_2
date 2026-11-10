@@ -9,7 +9,7 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace Determination
+namespace Determination.Patches
 {
     [HarmonyPatch(typeof(Corpse), nameof(Corpse.GetGizmos))]
     public class Patch_CorpseGizmos

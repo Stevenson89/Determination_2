@@ -7,7 +7,7 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace Determination
+namespace Determination.Patches
 {
     [HarmonyPatch(typeof(SkillRecord))]
     [HarmonyPatch("Aptitude", MethodType.Getter)]

@@ -9,7 +9,7 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace Determination
+namespace Determination.Patches
 {
     [HarmonyPatch(typeof(Pawn), "DoKillSideEffects")]
     public class Patch_GainEXP
