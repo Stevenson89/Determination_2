@@ -329,5 +329,26 @@ namespace Determination
                 StartRebellion();
             }
         }
+
+        public override void PostPostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
+        {
+            base.PostPostApplyDamage(dinfo, totalDamageDealt);
+            Faction targetFaction = pawn.Faction;
+            Pawn instigator = (Pawn)dinfo.Instigator;
+            CompSoul instigatorCompSoul = instigator.TryGetComp<CompSoul>();
+            if (instigatorCompSoul == null)
+                return;
+            foreach (Soul soul in instigatorCompSoul.ExtraSouls)
+            {
+                if (soul.Faction == targetFaction)
+                {
+                    instigatorCompSoul.Friction += soul.Determination;
+                    if (instigator.Faction.IsPlayer)
+                    {
+                        Messages.Message("MessageAttackIncreasedFriction".Translate(instigator.NameShortColored, pawn.NameShortColored), MessageTypeDefOf.NegativeEvent);
+                    }
+                }
+            }
+        }
     }
 }
