@@ -128,7 +128,7 @@ namespace Determination
             Scribe_Collections.Look(ref Skills, "Skills");
             Scribe_Collections.Look(ref Traits, "Traits");
             Scribe_References.Look(ref Faction, "Faction");
-            Scribe_Collections.Look(ref Opinions, "Opinions", LookMode.Reference, LookMode.Value, ref keysList, ref valuesList, saveDestroyedKeys: true, saveDestroyedValues: true);
+            Scribe_Collections.Look(ref Opinions, "Opinions", LookMode.Reference, LookMode.Value, ref keysList, ref valuesList);
             Scribe_Defs.Look(ref SoulVariant, "SoulVariant");
             Scribe_Values.Look(ref Determination, "Determination");
             Scribe_Values.Look(ref Psychopath, "Psychopath");

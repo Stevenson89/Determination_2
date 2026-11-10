@@ -78,7 +78,7 @@
         <techLevel>Industrial</techLevel>
         <selectable>true</selectable>
         <altitudeLayer>Item</altitudeLayer>
-        <tickerType>Normal</tickerType>
+        <tickerType>Rare</tickerType>
         <alwaysHaulable>true</alwaysHaulable>
         <pathCost>14</pathCost>
         <allowedArchonexusCount>1</allowedArchonexusCount>

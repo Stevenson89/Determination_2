@@ -95,7 +95,7 @@ namespace Determination
         {
             if (HasSoul)
             {
-                determination = Mathf.Clamp(determination + 0.01f, 0f, 1f);
+                determination = Mathf.Clamp(determination + 0.005f, 0f, 1f);
             }
         }
 
