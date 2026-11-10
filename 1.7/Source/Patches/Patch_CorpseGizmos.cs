@@ -14,16 +14,16 @@ namespace Determination.Patches
     [HarmonyPatch(typeof(Corpse), nameof(Corpse.GetGizmos))]
     public class Patch_CorpseGizmos
     {
-        static IEnumerable<Gizmo> Postfix(IEnumerable<Gizmo> gizmos, Corpse __instance)
+        static IEnumerable<Gizmo> Postfix(IEnumerable<Gizmo> __gizmos, Corpse __instance)
         {
-            foreach (Gizmo gizmo in gizmos)
+            foreach (Gizmo gizmo in __gizmos)
             {
                 yield return gizmo;
             }
             Pawn pawn = __instance.InnerPawn;
             CompSoul compSoul = pawn.TryGetComp<CompSoul>();
             // Self revive
-            if (compSoul != null && SoulUtilities.CanPawnSelfRevive(pawn) && pawn.IsPlayerControlled)
+            if (compSoul != null && SoulUtilities.CanPawnSelfRevive(pawn) && (pawn.IsColonist || pawn.IsSlaveOfColony))
             {
                 yield return new Command_Action()
                 {
