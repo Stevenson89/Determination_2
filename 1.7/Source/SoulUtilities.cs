@@ -202,7 +202,7 @@ namespace Determination
 
             float determination = soul.Determination;
 
-            if (determination < 0.5)
+            if (determination < 1.1)
                 return false;
 
             float exhaustion = GetDeterminationExhaustion(pawn);
