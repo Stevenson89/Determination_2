@@ -13,6 +13,7 @@ namespace Determination
         public Soul? soul;
         public SoulVariantDef? soulVariant => soul?.SoulVariant;
         public bool extractAllowed = false;
+        public bool CanExtract => soul != null && determination >= 1f;
         public float determination = 1.0f;
 
         private Material? uniqueUnderlayMat;
@@ -100,7 +101,7 @@ namespace Determination
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-            if (SoulResearchDefOf.DeterminationExtraction.IsFinished)
+            if ((SoulResearchDefOf.DeterminationExtraction.IsFinished && soul != null) || extractAllowed)
             {
                 yield return new Command_Toggle
                 {

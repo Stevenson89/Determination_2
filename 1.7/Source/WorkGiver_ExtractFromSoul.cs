@@ -31,7 +31,7 @@ namespace Determination
             if (t.IsForbidden(pawn) || !pawn.CanReserve(t))
                 return false;
 
-            if (container.determination < 1f)
+            if (!container.CanExtract)
                 return false;
 
             if (!container.extractAllowed)
