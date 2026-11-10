@@ -5,6 +5,7 @@
     <author>ModThings</author>
 <description>Adds mechanics and concepts from the game Undertale! Currently it adds:
 - Souls
+- Soul absorption
 - LV
 - Determination
 - Monsters
@@ -28,5 +29,5 @@
     <loadAfter>
         <li>Ludeon.RimWorld.Biotech</li>
     </loadAfter>
-    <modVersion>1.2.0</modVersion>
+    <modVersion>2.0.0</modVersion>
 </ModMetaData>
