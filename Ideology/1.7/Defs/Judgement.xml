@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <IssueDef>
+        <defName>Judgement</defName>
+        <label>divine judgement</label>
+        <iconPath>UI/Memes/DivineJudgement</iconPath>
+    </IssueDef>
+
+    <PreceptDef>
+        <defName>DivineJudgement_Required</defName>
+        <issue>Judgement</issue>
+        <label>required</label>
+        <description>We must all face judgement sooner or later.</description>
+        <impact>Medium</impact>
+        <requiredMemes>
+            <li>DivineJudgement</li>
+        </requiredMemes>
+        <displayOrderInIssue>0</displayOrderInIssue>
+        <displayOrderInImpact>1000</displayOrderInImpact>
+    </PreceptDef>
+
+    <MemeDef>
+        <defName>DivineJudgement</defName>
+        <label>divine judgement</label>
+        <description>The path to redemption begins with judgement.</description>
+        <iconPath>UI/Memes/DivineJudgement</iconPath>
+        <groupDef>Misc</groupDef>
+        <impact>2</impact>
+        <requireOne>
+            <li>
+                <li>DivineJudgement_Required</li>
+            </li>
+            <li>
+                <li>Execution_HorribleIfInnocent</li>
+                <li>Execution_DontCare</li>
+                <li>Execution_RespectedIfGuilty</li>
+            </li>
+        </requireOne>
+        <generalRules>
+            <rulesStrings>
+                <li>memeAdjective->judgemental</li>
+                <li>memeCreed->judges</li>
+                <li>memeCreed->monitors</li>
+                <li>memeHyphenPrefix->judge</li>
+                <li>memeConcept->judgement</li>
+                <li>memeConcept->justice</li>
+            </rulesStrings>
+        </generalRules>
+        <symbolPacks>
+            <li>
+                <ideoName>Justice</ideoName>
+                <theme>justice</theme>
+                <adjective>just</adjective>
+                <member>justice-bringer</member>
+            </li>
+        </symbolPacks>
+    </MemeDef>
+
+    <RulePackDef>
+        <defName>NamerRoleJudge</defName>
+        <rulePack>
+        <rulesStrings>
+            <li>r_roleName->[firstPart][secondPart]</li>
+            <li>firstPart->justice</li>
+            <li>firstPart->judgement</li>
+            <li>secondPart->maker</li>
+            <li>secondPart->bringer</li>
+        </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <PreceptDef ParentName="PreceptRoleMultiBase">
+        <defName>IdeoRole_Judge</defName>
+        <label>judge</label>
+        <description>A special ideoligious status granting its bearer the right to pass judgement on others. This role grants the ability to hold a Divine Judgement for a pawn, and grants the judge the ability to inflict karma damage towards sinners.</description>
+        <iconPath>UI/Roles/Judge</iconPath>
+        <nameMaker>NamerRoleJudge</nameMaker>
+        <roleRequirements>
+            <li Class="RoleRequirement_MinSkillAny">
+                <skills>
+                    <Social>6</Social>
+                </skills>
+            </li>
+        </roleRequirements>
+        <roleRequiredWorkTags>
+            <li>Social</li>
+            <li>Violent</li>
+        </roleRequiredWorkTags>
+        <roleTags>
+            <li>DivineJudge</li>
+        </roleTags>
+        <requiredMemes>
+            <li>DivineJudgement</li>
+        </requiredMemes>
+        <roleEffects>
+            <li Class="RoleEffect_NoMeleeWeapons" />
+            <li Class="RoleEffect_PawnStatOffset">
+                <statDef>ShootingAccuracyPawn</statDef>
+                <modifier>7</modifier>
+            </li>
+            <li Class="RoleEffect_PawnStatOffset">
+                <statDef>AimingDelayFactor</statDef>
+                <modifier>-0.5</modifier>
+            </li>
+        </roleEffects>
+        <displayOrderInImpact>2</displayOrderInImpact>
+    </PreceptDef>
+</Defs>
