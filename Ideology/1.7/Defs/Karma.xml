@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <HediffDef ParentName="BurnBase">
+        <defName>KarmaBurn</defName>
+        <label>karma burn</label>
+        <labelNoun>a karma burn</labelNoun>
+        <description>A burn left by karma.</description>
+        <comps>
+            <li Class="HediffCompProperties_GetsPermanent">
+                <permanentLabel>burn scar</permanentLabel>
+            </li>
+        </comps>
+        <injuryProps>
+            <destroyedLabel>Burned off</destroyedLabel>
+            <destroyedOutLabel>Burned out</destroyedOutLabel>
+        </injuryProps>
+    </HediffDef>
+
+    <HediffDef>
+        <defName>KarmaBuildup</defName>
+        <label>karma</label>
+        <labelNoun>karma</labelNoun>
+        <description>Existing sins have manifested into KARMA. This gradually causes burns across the body until it runs out.</description>
+        <hediffClass>Determination.Hediff_KarmaBuildup</hediffClass>
+        <defaultLabelColor>(255, 0, 255)</defaultLabelColor>
+        <initialSeverity>70</initialSeverity>
+    </HediffDef>
+
+    <DamageDef>
+        <defName>Karma</defName>
+        <label>karma</label>
+        <workerClass>DamageWorker_AddInjury</workerClass>
+        <deathMessage>{0} was overwhelmed by karma.</deathMessage>
+        <hediff>KarmaBurn</hediff>
+        <modExtensions>
+            <li Class="Determination.DeterminationModExtension">
+                <nonLethal>true</nonLethal>
+            </li>
+        </modExtensions>
+    </DamageDef>
+
+</Defs>

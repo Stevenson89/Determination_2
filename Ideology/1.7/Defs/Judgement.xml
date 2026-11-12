@@ -93,15 +93,7 @@
             <li>DivineJudgement</li>
         </requiredMemes>
         <roleEffects>
-            <li Class="RoleEffect_NoMeleeWeapons" />
-            <li Class="RoleEffect_PawnStatOffset">
-                <statDef>ShootingAccuracyPawn</statDef>
-                <modifier>7</modifier>
-            </li>
-            <li Class="RoleEffect_PawnStatOffset">
-                <statDef>AimingDelayFactor</statDef>
-                <modifier>-0.5</modifier>
-            </li>
+            <li Class="Determination.RoleEffect_EnableKarma" />
         </roleEffects>
         <displayOrderInImpact>2</displayOrderInImpact>
     </PreceptDef>

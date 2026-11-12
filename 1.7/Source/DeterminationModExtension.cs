@@ -15,5 +15,6 @@ namespace Determination
         public bool monsterDeterminationOverload;
         public bool monsterSoul;
         public bool bossMonster;
+        public bool nonLethal;
     }
 }
