@@ -5,19 +5,19 @@
         <description>The judgement quality determines the chance of a favorable judgement.</description>
         <workerClass>Determination.RitualOutcomeEffectWorker_DivineJudgement</workerClass>
         <startingQuality>0.5</startingQuality>
-        <minQuality>0.1</minQuality>
-        <maxQuality>0.9</maxQuality>
+        <minQuality>0</minQuality>
+        <maxQuality>1</maxQuality>
         <comps>
-            <!--TODO: Make the sins of the pawn contribute to outcome chance-->
-            <li Class="RitualOutcomeComp_PawnSkill">
-                <label>{PAWN_labelShort}'s social skill</label>
-                <labelAbstract>judge's social skill</labelAbstract>
-                <roleId>judge</roleId>
-                <skillDef>Social</skillDef>
+            <li Class="Determination.RitualOutcomeComp_LV">
+                <label>{PAWN_labelShort}'s LV</label>
+                <labelAbstract>defendant's LV</labelAbstract>
+                <roleId>defendant</roleId>
                 <curve>
                     <points>
-                        <li>(0, 0.0)</li>
-                        <li>(20, 0.50)</li>
+                        <li>(0, 0.5)</li>
+                        <li>(1, 0.5)</li>
+                        <li>(10, -0.4)</li>
+                        <li>(20, -1.0)</li>
                     </points>
                 </curve>
             </li>
@@ -32,21 +32,21 @@
             </li>
             <li>
                 <label>Negative</label>
-                <chance>0.4</chance>
+                <chance>0.2</chance>
                 <memory>NegativeJudgement</memory>
                 <description>The judge spoke harshly to {PAWN_labelShort} about {PAWN_possessive} sins. {PAWN_labelShort} recieved a mood debuff.</description>
                 <positivityIndex>-1</positivityIndex>
             </li>
             <li>
                 <label>Neutral</label>
-                <chance>0.4</chance>
+                <chance>0.3</chance>
                 <memory>NeutralJudgement</memory>
                 <description>The judge expressed cautious optimism towards {PAWN_labelShort}'s future, but warned {PAWN_objective} not to slip up.</description>
                 <positivityIndex>0</positivityIndex>
             </li>
             <li>
                 <label>Positive</label>
-                <chance>0.1</chance>
+                <chance>0.4</chance>
                 <memory>PositiveJudgement</memory>
                 <description>The judge {JUDGE_labelShort}'s speech was kind and full of praise. {PAWN_labelShort} recieved a mood buff.</description>
                 <positivityIndex>1</positivityIndex>
@@ -103,7 +103,7 @@
                 <allowChild>false</allowChild>
                 <mustBeAbleToReachTarget>True</mustBeAbleToReachTarget>
             </li>
-            <li Class="RitualRoleColonist">
+            <li Class="Determination.RitualRoleJudgementDefendant">
                 <label>defendant</label>
                 <id>defendant</id>
                 <maxCount>1</maxCount>
