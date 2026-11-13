@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <ThoughtDef>
+        <defName>UnjudgedSins</defName>
+        <workerClass>Determination.ThoughtWorker_Sin</workerClass>
+        <validWhileDespawned>true</validWhileDespawned>
+        <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+        <stages>
+            <li>
+                <label>unjudged sins (1)</label>
+                <description>I gained LV. I'll need to be judged at some point...</description>
+                <baseMoodEffect>-4</baseMoodEffect>
+            </li>
+            <li>
+                <label>unjudged sins (2)</label>
+                <description>I've gained another level. I need to be judged to clear my conscience.</description>
+                <baseMoodEffect>-8</baseMoodEffect>
+            </li>
+            <li>
+                <label>unjudged sins (3)</label>
+                <description>I've gained three levels since my last judgement. That's far too long.</description>
+                <baseMoodEffect>-12</baseMoodEffect>
+            </li>
+            <li>
+                <label>unjudged sins (4)</label>
+                <description>I must be judged. I can feel sin weighing heavily on me.</description>
+                <baseMoodEffect>-16</baseMoodEffect>
+            </li>
+            <li>
+                <label>unjudged sins (5)</label>
+                <description>I am crushed under the weight of my sins. I must undergo judgement as soon as possible.</description>
+                <baseMoodEffect>-20</baseMoodEffect>
+            </li>
+        </stages>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+            <li>Bloodlust</li>
+        </nullifyingTraits>
+        <nullifyingHediffs>
+            <li MayRequire="Ludeon.RimWorld.Anomaly">Inhumanized</li>
+        </nullifyingHediffs>
+    </ThoughtDef>
+</Defs>

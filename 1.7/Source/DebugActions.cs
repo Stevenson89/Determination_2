@@ -16,6 +16,14 @@ namespace Determination
             pawn.TryGetComp<CompSoul>().EXP = LevelUtilities.Custom_LVToEXP[20];
         }
         [DebugAction("Determination", null, false, false, false, false, false, 0, false, actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        public static void AddLV(Pawn pawn)
+        {
+            CompSoul compSoul = pawn.TryGetComp<CompSoul>();
+            if (compSoul == null || compSoul.LV >= 20)
+                return;
+            compSoul.EXP = LevelUtilities.Custom_LVToEXP[compSoul.LV + 1];
+        }
+        [DebugAction("Determination", null, false, false, false, false, false, 0, false, actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         public static void AddSoulAbsorbed(Pawn pawn)
         {
             SoulUtilities.IncreasePawnSouls(pawn);
