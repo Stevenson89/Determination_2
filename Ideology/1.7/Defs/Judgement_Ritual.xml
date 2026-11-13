@@ -4,6 +4,7 @@
         <defName>DivineJudgement</defName>
         <description>The judgement quality determines the chance of a favorable judgement.</description>
         <workerClass>Determination.RitualOutcomeEffectWorker_DivineJudgement</workerClass>
+        <allowAttachableOutcome>false</allowAttachableOutcome>
         <startingQuality>0.5</startingQuality>
         <minQuality>0</minQuality>
         <maxQuality>1</maxQuality>

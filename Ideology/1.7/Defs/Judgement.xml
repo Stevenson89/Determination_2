@@ -92,7 +92,7 @@
         </rulePack>
     </RulePackDef>
 
-    <PreceptDef ParentName="PreceptRoleMultiBase">
+    <PreceptDef ParentName="PreceptRoleSingleBase">
         <defName>IdeoRole_Judge</defName>
         <label>judge</label>
         <description>A special ideoligious status granting its bearer the right to pass judgement on others. This role grants the ability to hold a Divine Judgement for a pawn, and grants the judge the ability to inflict karma damage towards sinners.</description>
