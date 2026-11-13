@@ -119,5 +119,6 @@
             <li Class="Determination.RoleEffect_EnableKarma" />
         </roleEffects>
         <displayOrderInImpact>2</displayOrderInImpact>
+        <canRemoveInUI>false</canRemoveInUI>
     </PreceptDef>
 </Defs>

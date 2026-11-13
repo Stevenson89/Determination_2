@@ -192,10 +192,5 @@
         <canStartAnytime>true</canStartAnytime>
         <iconPathOverride>UI/Icons/Rituals/JudgementRitual</iconPathOverride>
         <ritualObligationTargetFilter>GatheringSpotOrAltar</ritualObligationTargetFilter>
-        <ritualObligationTriggers>
-            <li Class="Determination.RitualObligationTriggerProperties_DivineJudgement">
-                <mustBePlayerIdeo>true</mustBePlayerIdeo>
-            </li>
-        </ritualObligationTriggers>
     </RitualPatternDef>
 </Defs>
