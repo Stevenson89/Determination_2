@@ -19,6 +19,29 @@
         <displayOrderInImpact>1000</displayOrderInImpact>
     </PreceptDef>
 
+    <PreceptDef>
+        <defName>DivineJudgementRitual</defName>
+        <issue>Ritual</issue>
+        <label>divine judgement</label>
+        <description>A judge will pass judgement on behalf of the divine. All sin penalties will be removed from the one being judged, and they will recieve a mood bonus or penalty depending on how harsh the judge was.</description>
+        <impact>Medium</impact>
+        <preceptClass>Precept_Ritual</preceptClass>
+        <iconPath>UI/Icons/Rituals/JudgementRitual</iconPath>
+        <ritualPatternBase>Judgement</ritualPatternBase>
+        <requiredMemes>
+            <li>DivineJudgement</li>
+        </requiredMemes>
+        <associatedMemes>
+            <li>DivineJudgement</li>
+        </associatedMemes>
+        <displayOrderInIssue>0</displayOrderInIssue>
+        <displayOrderInImpact>1000</displayOrderInImpact>
+        <countsTowardsPreceptLimit>false</countsTowardsPreceptLimit>
+        <useRepeatPenalty>false</useRepeatPenalty>
+        <selectionWeight>1.0</selectionWeight>
+        <usesIdeoVisualEffects>false</usesIdeoVisualEffects>
+    </PreceptDef>
+
     <MemeDef>
         <defName>DivineJudgement</defName>
         <label>divine judgement</label>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <RitualOutcomeEffectDef>
+        <defName>DivineJudgement</defName>
+        <description>The judgement quality determines the chance of a favorable judgement.</description>
+        <workerClass>Determination.RitualOutcomeEffectWorker_DivineJudgement</workerClass>
+        <startingQuality>0.5</startingQuality>
+        <minQuality>0.1</minQuality>
+        <maxQuality>0.9</maxQuality>
+        <comps>
+            <!--TODO: Make the sins of the pawn contribute to outcome chance-->
+            <li Class="RitualOutcomeComp_PawnSkill">
+                <label>{PAWN_labelShort}'s social skill</label>
+                <labelAbstract>judge's social skill</labelAbstract>
+                <roleId>judge</roleId>
+                <skillDef>Social</skillDef>
+                <curve>
+                    <points>
+                        <li>(0, 0.0)</li>
+                        <li>(20, 0.50)</li>
+                    </points>
+                </curve>
+            </li>
+        </comps>
+        <outcomeChances>
+            <li>
+                <label>praised</label>
+                <chance>0.5</chance>
+                <description>The judge {PROSECUTOR_labelShort}'s speech was kind and full of praise. {PAWN_labelShort} recieved a mood buff.</description>
+                <positivityIndex>-1</positivityIndex>
+            </li>
+            <li>
+                <label>reprimanded</label>
+                <chance>0.5</chance>
+                <description>The judge spoke harshly to {PAWN_labelShort} about {PAWN_pronoun} sins. {PAWN_labelShort} recieved a mood debuff.</description>
+                <positivityIndex>1</positivityIndex>
+            </li>
+        </outcomeChances>
+    </RitualOutcomeEffectDef>
+
+    <InteractionDef>
+        <defName>DivineJudgement_Judge</defName>
+        <label>judge</label>
+        <workerClass>InteractionWorker</workerClass>
+        <ignoreTimeSinceLastInteraction>True</ignoreTimeSinceLastInteraction>
+        <symbol>UI/Icons/Rituals/Trial</symbol>
+        <logRulesInitiator>
+            <rulesStrings>
+                <li>r_logentry->[INITIATOR_nameDef] recounted events involving [RECIPIENT_nameDef].</li>
+                <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the true meaning of [meaning].</li>
+                <li>r_logentry->[INITIATOR_nameDef] spoke about the danger of [danger].</li>
+                <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to look inside [PAWN_objective]self.</li>
+                <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] if [PAWN_pronoun]'s done the right thing.</li>
+                <li>r_logentry->[INITIATOR_nameDef] paused for a moment.</li>
+                <li>r_logentry->[INITIATOR_nameDef] briefly mentioned [subject].</li>
+                <li>r_logentry->[INITIATOR_nameDef] warned [RECIPIENT_nameDef] about the consequences of [PAWN_possessive] actions.</li>
+                <li>r_logentry->[INITIATOR_nameDef] told a short story about [subject].</li>
+                <li>meaning->EXP</li>
+                <li>meaning->LV</li>
+                <li>subject->life</li>
+                <li>subject->death</li>
+                <li>subject->freedom</li>
+                <li>subject->the afterlife</li>
+                <li>danger->sin</li>
+                <li>danger->killing</li>
+                <li>danger->karma</li>
+            </rulesStrings>
+        </logRulesInitiator>
+    </InteractionDef>
+
+    <RitualBehaviorDef>
+        <defName>DivineJudgement</defName>
+        <workerClass>Determination.RitualBehaviorWorker_DivineJudgement</workerClass>
+        <durationTicks>5000</durationTicks>
+        <spectatorFilter Class="Determination.RitualSpectatorFilter_None">
+            <description>Spectators not allowed.</description>
+        </spectatorFilter>
+        <roles>
+            <li Class="RitualRoleTag">
+                <label>judge</label>
+                <tag>DivineJudge</tag>
+                <id>judge</id>
+                <precept>IdeoRole_Judge</precept>
+                <required>True</required>
+                <maxCount>1</maxCount>
+                <countsAsParticipant>False</countsAsParticipant>
+                <allowChild>false</allowChild>
+                <mustBeAbleToReachTarget>True</mustBeAbleToReachTarget>
+            </li>
+            <li Class="RitualRoleColonist">
+                <label>defendant</label>
+                <id>defendant</id>
+                <maxCount>1</maxCount>
+                <required>True</required>
+                <countsAsParticipant>False</countsAsParticipant>
+                <ignoreBleeding>true</ignoreBleeding>
+            </li>
+        </roles>
+        <stages>
+            <li>
+                <defaultDuty>Spectate</defaultDuty>
+                <!--
+                <allowedSpectateSidesOverride>Horizontal</allowedSpectateSidesOverride>
+                <spectateDistanceOverride>1</spectateDistanceOverride>
+                <spectatorsRequired>true</spectatorsRequired>
+                -->
+                <endTriggers>
+                    <li Class="StageEndTrigger_RolesArrived">
+                        <roleIds>
+                            <li>judge</li>
+                            <li>defendant</li>
+                        </roleIds>
+                    </li>
+                </endTriggers>
+                <roleBehaviors>
+                    <li>
+                        <roleId>judge</roleId>
+                        <dutyDef>ArriveToCell</dutyDef>
+                        <customPositions>
+                            <li Class="RitualPosition_BehindThingCenter" />
+                        </customPositions>
+                    </li>
+                    <li>
+                        <roleId>defendant</roleId>
+                        <dutyDef>ArriveToCell</dutyDef>
+                        <customPositions>
+                            <li Class="RitualPosition_InFrontThingCenter"/>
+                        </customPositions>
+                    </li>
+                </roleBehaviors>
+                <highlightRolePawns>
+                    <li>defendant</li>
+                    <li>judge</li>
+                </highlightRolePawns>
+            </li>
+            <li>
+                <defaultDuty>Spectate</defaultDuty>
+                <!--
+                <allowedSpectateSidesOverride>Horizontal</allowedSpectateSidesOverride>
+                <spectateDistanceOverride>1</spectateDistanceOverride>
+                <spectatorsRequired>true</spectatorsRequired>
+                -->
+                <endTriggers>
+                    <li Class="StageEndTrigger_DurationPercentage">
+                        <percentage>1</percentage>
+                    </li>
+                </endTriggers>
+                <roleBehaviors>
+                <li>
+                    <roleId>judge</roleId>
+                    <dutyDef>SpeakOnCellNoSpeechBubbles</dutyDef>
+                    <customPositions>
+                    <li Class="RitualPosition_BehindThingCenter" />
+                    </customPositions>
+                </li>
+                <li>
+                    <roleId>defendant</roleId>
+                    <dutyDef>StandOnCell</dutyDef>
+                </li>
+                </roleBehaviors>
+                <highlightRolePawns>
+                    <li>defendant</li>
+                    <li>judge</li>
+                </highlightRolePawns>
+            </li>
+        </stages>
+    </RitualBehaviorDef>
+
+    <RitualPatternDef>
+        <defName>Judgement</defName>
+        <ritualBehavior>DivineJudgement</ritualBehavior>
+        <ritualTargetFilter>IdeoBuildingOrRitualSpot</ritualTargetFilter>
+        <ritualOutcomeEffect>DivineJudgement</ritualOutcomeEffect>
+        <playsIdeoMusic>false</playsIdeoMusic>
+        <canStartAnytime>true</canStartAnytime>
+        <iconPathOverride>UI/Icons/Rituals/JudgementRitual</iconPathOverride>
+        <ritualObligationTargetFilter>GatheringSpotOrAltar</ritualObligationTargetFilter>
+        <ritualObligationTriggers>
+            <li Class="Determination.RitualObligationTriggerProperties_DivineJudgement">
+                <mustBePlayerIdeo>true</mustBePlayerIdeo>
+            </li>
+        </ritualObligationTriggers>
+    </RitualPatternDef>
+</Defs>
