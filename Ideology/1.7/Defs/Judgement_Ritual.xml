@@ -24,15 +24,31 @@
         </comps>
         <outcomeChances>
             <li>
-                <label>praised</label>
-                <chance>0.5</chance>
-                <description>The judge {PROSECUTOR_labelShort}'s speech was kind and full of praise. {PAWN_labelShort} recieved a mood buff.</description>
+                <label>Threatening</label>
+                <chance>0.1</chance>
+                <memory>ThreateningJudgement</memory>
+                <description>The judge threatened the life of {PAWN_labelShort} if {PAWN_pronoun} continues down this route. {PAWN_labelShort} recieved a large mood debuff.</description>
+                <positivityIndex>-2</positivityIndex>
+            </li>
+            <li>
+                <label>Negative</label>
+                <chance>0.4</chance>
+                <memory>NegativeJudgement</memory>
+                <description>The judge spoke harshly to {PAWN_labelShort} about {PAWN_possessive} sins. {PAWN_labelShort} recieved a mood debuff.</description>
                 <positivityIndex>-1</positivityIndex>
             </li>
             <li>
-                <label>reprimanded</label>
-                <chance>0.5</chance>
-                <description>The judge spoke harshly to {PAWN_labelShort} about {PAWN_pronoun} sins. {PAWN_labelShort} recieved a mood debuff.</description>
+                <label>Neutral</label>
+                <chance>0.4</chance>
+                <memory>NeutralJudgement</memory>
+                <description>The judge expressed cautious optimism towards {PAWN_labelShort}'s future, but warned {PAWN_objective} not to slip up.</description>
+                <positivityIndex>0</positivityIndex>
+            </li>
+            <li>
+                <label>Positive</label>
+                <chance>0.1</chance>
+                <memory>PositiveJudgement</memory>
+                <description>The judge {JUDGE_labelShort}'s speech was kind and full of praise. {PAWN_labelShort} recieved a mood buff.</description>
                 <positivityIndex>1</positivityIndex>
             </li>
         </outcomeChances>

@@ -23,6 +23,7 @@ namespace Determination
         public float Friction = 0f;
         public float LastFrictionChange = 0f;
         public int UnjudgedSins = 0;
+        public int JudgedAt = 0;
         public Pawn pawn
         {
             get
@@ -87,7 +88,9 @@ namespace Determination
 
                 bool leveled = oldLV != LV;
                 int amount = LV - oldLV;
-                UnjudgedSins += amount;
+
+                if (ModsConfig.IdeologyActive && pawn.Ideo != null && pawn.Ideo.HasPrecept(DefDatabase<PreceptDef>.GetNamed("DivineJudgement_Required")))
+                    UnjudgedSins += amount;
 
                 if (parent.Map == null || parent.DrawPos == null || isbeingloaded)
                     return;
@@ -134,6 +137,7 @@ namespace Determination
             Scribe_Values.Look(ref _EXP, "_EXP");
             Scribe_Collections.Look(ref ExtraSouls, "ExtraSouls");
             Scribe_Values.Look(ref UnjudgedSins, "UnjudgedSins");
+            Scribe_Values.Look(ref JudgedAt, "JudgedAt");
         }
 
         public string GetAllModifiers()
