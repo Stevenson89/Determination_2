@@ -8,6 +8,7 @@ namespace Determination
 {
     public class Hediff_KarmaBuildup : HediffWithComps
     {
+        public static DamageDef DamageDef = DefDatabase<DamageDef>.GetNamed("Karma");
         public override string LabelInBrackets => Mathf.Ceil(Severity).ToString();
         int TicksSinceKarma = 0;
         int TicksBetweenKarma // These values are twice that of Undertales because Undertale runs at 30 FPS
@@ -28,8 +29,7 @@ namespace Determination
         }
         private void ApplyKarmaBurn()
         {
-            DamageDef def = DefDatabase<DamageDef>.GetNamed("Karma");
-            pawn.TakeDamage(new DamageInfo(def, 1));
+            pawn.TakeDamage(new DamageInfo(DamageDef, 1));
         }
         public override void PostTick()
         {

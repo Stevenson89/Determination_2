@@ -24,7 +24,6 @@
         <description>Existing sins have manifested into KARMA. This gradually causes burns across the body until it runs out.</description>
         <hediffClass>Determination.Hediff_KarmaBuildup</hediffClass>
         <defaultLabelColor>(255, 0, 255)</defaultLabelColor>
-        <initialSeverity>70</initialSeverity>
     </HediffDef>
 
     <DamageDef>
