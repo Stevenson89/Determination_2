@@ -29,5 +29,5 @@
     <loadAfter>
         <li>Ludeon.RimWorld.Biotech</li>
     </loadAfter>
-    <modVersion>2.0.1</modVersion>
+    <modVersion>2.1.0</modVersion>
 </ModMetaData>

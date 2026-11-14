@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+    <DT_CantStartRitualSelectedPawnAlreadyJudged>{PAWN_nameDef} has already been judged at their current LV.</DT_CantStartRitualSelectedPawnAlreadyJudged>
+    <DT_PawnDoesNotBelieveInJudgement>{PAWN_nameDef} does not believe in judgement.</DT_PawnDoesNotBelieveInJudgement>
+
+</LanguageData>
