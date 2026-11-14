@@ -120,5 +120,6 @@
         </roleEffects>
         <displayOrderInImpact>2</displayOrderInImpact>
         <canRemoveInUI>false</canRemoveInUI>
+        <createsRoleEmptyThought>False</createsRoleEmptyThought>
     </PreceptDef>
 </Defs>
