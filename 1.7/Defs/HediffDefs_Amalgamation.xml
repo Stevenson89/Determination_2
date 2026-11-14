@@ -49,6 +49,7 @@
                     </li>
                 </capMods>
                 <totalBleedFactor>0</totalBleedFactor>
+                <painFactor>0</painFactor>
             </li>
         </stages>
     </HediffDef>
