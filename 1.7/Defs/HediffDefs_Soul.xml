@@ -136,7 +136,7 @@
         <description>This creature has a dangerously high level of active determination in its bloodstream. This will wear off eventually, and when it does it will cause a hangover depending on the severity it reached. High severity can also cause burns to random body parts.</description>
         <hediffClass>Determination.Hediff_DeterminationOverload</hediffClass>
         <defaultLabelColor>(1,1,0)</defaultLabelColor>
-        <initialSeverity>0.7</initialSeverity>
+        <initialSeverity>1</initialSeverity>
         <comps>
             <li Class="HediffCompProperties_SeverityPerDay">
                 <severityPerDay>-1</severityPerDay>
@@ -178,6 +178,7 @@
                     <canAffectAnyLivePart>true</canAffectAnyLivePart>
                     </li>
                 </hediffGivers>
+                <totalBleedFactor>0</totalBleedFactor>
             </li>
         </stages>
     </HediffDef>
