@@ -189,7 +189,7 @@
         <ritualTargetFilter>IdeoBuildingOrRitualSpot</ritualTargetFilter>
         <ritualOutcomeEffect>DivineJudgement</ritualOutcomeEffect>
         <playsIdeoMusic>false</playsIdeoMusic>
-        <canStartAnytime>true</canStartAnytime>
+        <alwaysStartAnytime>true</alwaysStartAnytime>
         <iconPathOverride>UI/Icons/Rituals/JudgementRitual</iconPathOverride>
         <ritualObligationTargetFilter>GatheringSpotOrAltar</ritualObligationTargetFilter>
     </RitualPatternDef>
