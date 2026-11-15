@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using Determination;
 
 namespace Determination
 {
@@ -38,7 +39,7 @@ namespace Determination
                 return !Variant.soulless;
             }
         }
-        public float Determination
+        public float SoulDetermination
         {
             get
             {
@@ -359,6 +360,42 @@ namespace Determination
                         Messages.Message("MessageAttackIncreasedFriction".Translate(instigator.NameShortColored, pawn.NameShortColored), MessageTypeDefOf.NegativeEvent);
                     }
                 }
+            }
+        }
+
+        private Material? uniqueOverlayMat;
+
+        public Material UniqueOverlayMat
+        {
+            get
+            {
+                if (uniqueOverlayMat == null)
+                {
+                    string matPath = "Misc/soul_outlined";
+                    if (Variant.soulless)
+                        matPath = "Misc/soulless_outlined";
+                    Material baseMat = MaterialPool.MatFrom(matPath, ShaderDatabase.TransparentPostLight);
+                    uniqueOverlayMat = new Material(baseMat);
+                    uniqueOverlayMat.SetColor("_Color", Variant.type.color);
+                }
+                return uniqueOverlayMat;
+            }
+        }
+
+        public override void PostDraw()
+        {
+            base.PostDraw();
+            if (parent.Spawned && Determination.ShowSoulOverlay)
+            {
+                Vector3 drawPos = parent.DrawPos;
+                drawPos.y += 0.05f; // lower altitude = drawn beneath the parent's own graphic
+                Matrix4x4 matrix = default;
+                if (!Variant.type.monster)
+                    matrix.SetTRS(drawPos, Quaternion.identity, new Vector3(parent.def.size.x / 2f, 1f, parent.def.size.z / 2f));
+                else
+                    matrix.SetTRS(drawPos, Quaternion.AngleAxis(180f, Vector2.up), new Vector3(parent.def.size.x / 2f, 1f, parent.def.size.z / 2f));
+
+                Graphics.DrawMesh(MeshPool.plane10, matrix, UniqueOverlayMat, 0);
             }
         }
     }

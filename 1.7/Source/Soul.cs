@@ -52,7 +52,7 @@ namespace Determination
             }
             CompSoul compSoul = pawn.TryGetComp<CompSoul>();
             SoulVariant = compSoul.Variant;
-            Determination = compSoul.Determination;
+            Determination = compSoul.SoulDetermination;
             Psychopath = pawn.story.traits.HasTrait(TraitDefOf.Psychopath);
             Legacy = false;
         }

@@ -24,7 +24,7 @@ namespace Determination
             {
                 if (soul.HasSoul)
                 {
-                    Severity -= soul.Determination * (1f / 300f);
+                    Severity -= soul.SoulDetermination * (1f / 300f);
                 }
                 else
                 {

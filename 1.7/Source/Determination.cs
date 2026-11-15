@@ -17,6 +17,7 @@ namespace Determination
         public static Texture2D soulTextureBig => ContentFinder<Texture2D>.Get("Misc/soul", true);
         public static Texture2D soullessTextureBig => ContentFinder<Texture2D>.Get("Misc/soulless", true);
         public static string CURRENT_MOD_VERSION;
+        public static bool ShowSoulOverlay = false;
         public static int VERSION_MAJOR
         {
             get

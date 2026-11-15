@@ -201,7 +201,7 @@ namespace Determination
             if (soul == null)
                 return false;
 
-            float determination = soul.Determination;
+            float determination = soul.SoulDetermination;
 
             if (determination < 1.1)
                 return false;

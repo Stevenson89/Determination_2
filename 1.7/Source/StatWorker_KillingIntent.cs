@@ -18,7 +18,7 @@ namespace Determination
             CompSoul soul = pawn.TryGetComp<CompSoul>();
             if (soul == null)
                 return 0f;
-            float baseDetermination = soul.Determination;
+            float baseDetermination = soul.SoulDetermination;
             float tempDetermination = soul.TemporaryDetermination;
             float LV = soul.LV;
             return (baseDetermination + tempDetermination) * (LV / 10f);

@@ -46,7 +46,7 @@ namespace Determination
 
             string soulHeader = "DT_SoulHeader".Translate(color.LabelCap, variant.LabelCap);
             string soulDesc = variant.description;
-            string determination = "DT_Determination".Translate(compSoul.Determination * 100f);
+            string determination = "DT_Determination".Translate(compSoul.SoulDetermination * 100f);
             string modifiers = compSoul.GetAllModifiers();
             string LVModifiersHeader = "DT_LVModifiers".Translate();
             string LVModifiers = compSoul.GetLVModifiers();

@@ -25,5 +25,6 @@
     <DT_Loyal>Loyal:</DT_Loyal>
     <DT_Disloyal>Disloyal:</DT_Disloyal>
     <DT_RoleEffectEnableKarma>Enables karma damage</DT_RoleEffectEnableKarma>
+    <DT_ShowSoulOverlay>Show soul overlay</DT_ShowSoulOverlay>
 
 </LanguageData>
