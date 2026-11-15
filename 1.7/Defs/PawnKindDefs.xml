@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <PawnKindDef ParentName="OutlanderBase" Name="VillagerBase">
+        <defName>WanderingJudge</defName>
+        <label>judge</label>
+        <combatPower>75</combatPower>
+        <itemQuality>Poor</itemQuality>
+        <isFighter>false</isFighter>
+        <gearHealthRange>0.2~2.0</gearHealthRange>
+        <weaponTags>
+            <li>Gun</li>
+            <li>MedievalMeleeBasic</li>
+        </weaponTags>
+        <weaponMoney>65~250</weaponMoney>
+        <apparelMoney>200~400</apparelMoney>
+        <apparelAllowHeadgearChance>0.4</apparelAllowHeadgearChance>
+        <techHediffsChance>0.06</techHediffsChance>
+        <techHediffsMoney>50~600</techHediffsMoney>
+        <techHediffsTags>
+            <li>Poor</li>
+            <li>Simple</li>
+            <li>ImplantEmpireCommon</li>
+        </techHediffsTags>
+        <initialWillRange>8~12</initialWillRange>
+        <initialResistanceRange>20~27</initialResistanceRange>
+        <requiredWorkTags>
+            <li>Social</li>
+            <li>Violent</li>
+        </requiredWorkTags>
+        <xenotypeSet>
+            <xenotypeChances>
+                <DeterminationSans_skeleton MayRequire="Determination.Sans">1</DeterminationSans_skeleton>
+            </xenotypeChances>
+        </xenotypeSet>
+    </PawnKindDef>
+</Defs>

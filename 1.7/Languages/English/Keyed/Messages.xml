@@ -14,5 +14,7 @@
 Under the 'Soul' tab on {0}, you can now see which absorbed souls are loyal to them. Disloyal souls increase friction while loyal ones decrease it. The amount of influence over friction a soul has comes from its determination.
 
 High friction causes mental breaks. If it reaches 100% the souls will rebel.</DT_AbsorbedSoulLetterBody>
+    <DT_WanderingJudgeLetterTitle>Wandering Judge</DT_WanderingJudgeLetterTitle>
+    <DT_WanderingJudgeLetterBody>A {PAWN_title} named {PAWN_nameDef} has arrived and wants to join the colony.\n\n[PAWN_pronoun] believes [PAWN_pronoun] is hearing the voice of a higher power, and wishes to fulfill [PAWN_possessive] purpose as a judge in your colony. You can choose to turn {PAWN_objective} down and send {PAWN_objective} away. However, your colonists will be disturbed at sending someone away in need.</DT_WanderingJudgeLetterBody>
 
 </LanguageData>

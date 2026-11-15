@@ -11,6 +11,8 @@ namespace Determination
     {
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
+            if (!ModsConfig.IdeologyActive)
+                return false;
             CompSoul compSoul = p.TryGetComp<CompSoul>();
             if (compSoul == null)
                 return false;
