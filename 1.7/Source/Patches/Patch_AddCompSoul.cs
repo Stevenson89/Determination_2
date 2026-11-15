@@ -14,43 +14,8 @@ namespace Determination.Patches
     {
         public static void Postfix(Pawn __result)
         {
-            CompSoul soul = __result.TryGetComp<CompSoul>();
-            if (soul == null)
-                return;
-            if (soul.Variant != null)
-                return;
-            bool isMonster = SoulUtilities.IsMonster(__result);
-            bool isBoss = SoulUtilities.IsBossMonster(__result);
-            SoulVariantDef variant;
-            List<SoulVariantDef> options = new List<SoulVariantDef>();
-            if (__result.story?.traits != null)
-            {
-                foreach (Trait trait in __result.story.traits.allTraits)
-                {
-                    DeterminationModExtension extension = trait.def.GetModExtension<DeterminationModExtension>();
-                    if (extension != null)
-                    {
-                        if (extension.forcedSoulVariant != null && extension.forcedSoulVariant.type.monster == isMonster)
-                        {
-                            options.Add(extension.forcedSoulVariant);
-                        }
-                        else if (extension.forcedSoulColor != null && extension.forcedSoulColor.monster == isMonster)
-                        {
-                            IEnumerable<SoulVariantDef> candidates = DefDatabase<SoulVariantDef>.AllDefs.Where(d => d.type == extension.forcedSoulColor && d.soulless == false);
-                            options.Add(candidates.RandomElement());
-                        }
-                    }
-                }
-            }
-            if (options.Count != 0)
-            {
-                variant = options.RandomElement();
-            }
-            else
-                variant = SoulUtilities.GetSoul(isMonster, isBoss);
-
-            soul.Variant = variant;
-            soul.OnPawnGenerated();
+            SoulUtilities.AssignPawnSoul(__result);
+            __result.TryGetComp<CompSoul>()?.OnPawnGenerated();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using UnityEngine;
 using Verse;
 
@@ -11,7 +12,8 @@ namespace Determination
     public class CompSoulContainer : ThingComp
     {
         public Soul? soul;
-        public SoulVariantDef? soulVariant => soul?.SoulVariant;
+        public SoulVariantDef? soulVariant; // This is never set normally. It is only used to migrate 1.0 versions of the mod to 2.0
+        public SoulVariantDef? SoulVariant => soul?.SoulVariant;
         public bool extractAllowed = false;
         public bool CanExtract => soul != null && determination >= 1f;
         public float determination = 1.0f;
@@ -26,7 +28,7 @@ namespace Determination
                 {
                     Material baseMat = MaterialPool.MatFrom("Misc/soul", ShaderDatabase.Transparent);
                     uniqueUnderlayMat = new Material(baseMat);
-                    uniqueUnderlayMat.SetColor("_Color", soulVariant.type.color);
+                    uniqueUnderlayMat.SetColor("_Color", SoulVariant.type.color);
                 }
                 return uniqueUnderlayMat;
             }
@@ -36,7 +38,7 @@ namespace Determination
         {
             get
             {
-                return soulVariant != null;
+                return SoulVariant != null;
             }
         }
 
@@ -73,7 +75,7 @@ namespace Determination
             string part = "";
             if (HasSoul)
             {
-                part += soulVariant.description + "\n";
+                part += SoulVariant.description + "\n";
                 part += "DT_Determination".Translate(determination * 100f);
             }
             else
@@ -86,9 +88,32 @@ namespace Determination
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Deep.Look(ref soul, "soul");
+            bool legacySoul = false;
+            if (Scribe.mode == LoadSaveMode.LoadingVars)
+            {
+                XmlNode? node = Scribe.loader.curXmlParent["soul"];
+                if (node != null)
+                {
+                    if (DefDatabase<SoulVariantDef>.GetNamedSilentFail(node.InnerText) != null)
+                        legacySoul = true;
+                }
+            }
+            Log.Message($"Legacy soul : {(legacySoul ? "True" : "False")}");
+            if (legacySoul)
+            {
+                Scribe_Defs.Look(ref soulVariant, "soul");
+                Log.Message(soulVariant?.ToString());
+            }
+            else
+                Scribe_Deep.Look(ref soul, "soul");
             Scribe_Values.Look(ref extractAllowed, "extractAllowed");
             Scribe_Values.Look(ref determination, "determination");
+            if (Scribe.mode == LoadSaveMode.LoadingVars && soulVariant != null && soul == null)
+            {
+                Log.Message("Making legacy soul");
+                soul = new Soul(soulVariant);
+                soulVariant = null;
+            }
         }
 
         public override void CompTickRare()

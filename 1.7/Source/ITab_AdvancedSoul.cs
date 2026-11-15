@@ -35,6 +35,12 @@ namespace Determination
                 Widgets.Label(new Rect(50, 50, 200f, 100f), "No soul is connected.");
                 return;
             }
+            if (soul.Legacy)
+            {
+                Text.Font = GameFont.Medium;
+                Widgets.Label(new Rect(50, 50, 200f, 100f), "This is a legacy soul. Further information on it is not available.");
+                return;
+            }
             SoulVariantDef variant = soul.SoulVariant;
             SoulColorDef color = variant.type;
             const float DEFAULT_SPACING = 2f;

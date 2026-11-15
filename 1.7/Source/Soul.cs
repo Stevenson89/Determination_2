@@ -25,6 +25,7 @@ namespace Determination
         public SoulVariantDef SoulVariant;
         public float Determination;
         public bool Psychopath;
+        public bool Legacy;
 
         List<Pawn> keysList = [];
         List<int> valuesList = [];
@@ -53,6 +54,7 @@ namespace Determination
             SoulVariant = compSoul.Variant;
             Determination = compSoul.Determination;
             Psychopath = pawn.story.traits.HasTrait(TraitDefOf.Psychopath);
+            Legacy = false;
         }
 
         private int GetDeadOpinion(Pawn pawn, Pawn other)
@@ -113,6 +115,26 @@ namespace Determination
             SoulVariant = SoulVariantDefOf.SoullessHuman;
             Determination = 0f;
             Psychopath = false;
+            Legacy = false;
+        }
+        public Soul(SoulVariantDef variant)
+        {
+            OriginalPawn = null;
+            Name = new NameTriple("", "Unnamed", "");
+            Title = "";
+            ChildhoodBackstory = null;
+            AdultBackstory = null;
+            Ideology = null;
+            Certainty = 1f;
+            Gender = Gender.None;
+            Skills = null;
+            Traits = [];
+            Faction = null;
+            Opinions = [];
+            SoulVariant = variant;
+            Determination = 0f;
+            Psychopath = false;
+            Legacy = true;
         }
 
         public void ExposeData()
@@ -132,6 +154,7 @@ namespace Determination
             Scribe_Defs.Look(ref SoulVariant, "SoulVariant");
             Scribe_Values.Look(ref Determination, "Determination");
             Scribe_Values.Look(ref Psychopath, "Psychopath");
+            Scribe_Values.Look(ref Legacy, "Legacy");
         }
         
         public enum Loyalty
@@ -142,6 +165,8 @@ namespace Determination
 
         public Loyalty GetLoyaltyTo(Pawn other)
         {
+            if (Legacy)
+                return Loyalty.LOYAL;
             if (Traits.ContainsAny(t => t.def == TraitDefOf.Psychopath))
                 return Loyalty.DISLOYAL;
             if (Traits.ContainsAny(t => t.def == TraitDefOf.Kind))

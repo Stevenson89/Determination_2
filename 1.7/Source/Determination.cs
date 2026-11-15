@@ -13,9 +13,40 @@ namespace Determination
     public static class Determination
     {
         public static bool IsTherapyActive = ModsConfig.IsActive("ferny.ProgressionTherapy");
-        public static readonly Texture2D soulIcon = ContentFinder<Texture2D>.Get("UI/soul", true);
-        public static readonly Texture2D soulTextureBig = ContentFinder<Texture2D>.Get("Misc/soul", true);
-        public static readonly Texture2D soullessTextureBig = ContentFinder<Texture2D>.Get("Misc/soulless", true);
+        public static Texture2D soulIcon => ContentFinder<Texture2D>.Get("UI/soul", true);
+        public static Texture2D soulTextureBig => ContentFinder<Texture2D>.Get("Misc/soul", true);
+        public static Texture2D soullessTextureBig => ContentFinder<Texture2D>.Get("Misc/soulless", true);
+        public static string CURRENT_MOD_VERSION;
+        public static int VERSION_MAJOR
+        {
+            get
+            {
+                bool valid = int.TryParse(CURRENT_MOD_VERSION.Split(".")[0], out int result);
+                if (!valid)
+                    Log.Error("Invalid major version for Determination. Report this please.");
+                return result;
+            }
+        }
+        public static int VERSION_MINOR
+        {
+            get
+            {
+                bool valid = int.TryParse(CURRENT_MOD_VERSION.Split(".")[1], out int result);
+                if (!valid)
+                    Log.Error("Invalid minor version for Determination. Report this please.");
+                return result;
+            }
+        }
+        public static int VERSION_PATCH
+        {
+            get
+            {
+                bool valid = int.TryParse(CURRENT_MOD_VERSION.Split(".")[2], out int result);
+                if (!valid)
+                    Log.Error("Invalid patch version for Determination. Report this please.");
+                return result;
+            }
+        }
         static Determination()
         {
             // Some explanation:

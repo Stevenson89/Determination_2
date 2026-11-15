@@ -134,10 +134,13 @@ namespace Determination
             else
                 isbeingloaded = false;
             Scribe_Defs.Look(ref Variant, "Variant");
+            if (isbeingloaded)
+                Variant ??= SoulUtilities.IsMonster(pawn) ? SoulVariantDefOf.SoullessMonster : SoulVariantDefOf.SoullessHuman;
             Scribe_Values.Look(ref _EXP, "_EXP");
             Scribe_Collections.Look(ref ExtraSouls, "ExtraSouls");
             Scribe_Values.Look(ref UnjudgedSins, "UnjudgedSins");
             Scribe_Values.Look(ref JudgedAt, "JudgedAt");
+            ExtraSouls ??= [];
         }
 
         public string GetAllModifiers()

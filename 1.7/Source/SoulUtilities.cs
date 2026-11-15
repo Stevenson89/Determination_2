@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 using Waylith.Math;
+using static UnityEngine.Networking.UnityWebRequest;
 
 namespace Determination
 {
@@ -268,6 +269,46 @@ namespace Determination
                 return true;
             }
             return false;
+        }
+
+        public static void AssignPawnSoul(Pawn pawn, bool overrideSoulless = false)
+        {
+            CompSoul soul = pawn.TryGetComp<CompSoul>();
+            if (soul == null)
+                return;
+            if (soul.Variant != null && (!soul.Variant.soulless || !overrideSoulless))
+                return;
+            bool isMonster = IsMonster(pawn);
+            bool isBoss = IsBossMonster(pawn);
+            SoulVariantDef variant;
+            List<SoulVariantDef> options = new List<SoulVariantDef>();
+            if (pawn.story?.traits != null)
+            {
+                foreach (Trait trait in pawn.story.traits.allTraits)
+                {
+                    DeterminationModExtension extension = trait.def.GetModExtension<DeterminationModExtension>();
+                    if (extension != null)
+                    {
+                        if (extension.forcedSoulVariant != null && extension.forcedSoulVariant.type.monster == isMonster)
+                        {
+                            options.Add(extension.forcedSoulVariant);
+                        }
+                        else if (extension.forcedSoulColor != null && extension.forcedSoulColor.monster == isMonster)
+                        {
+                            IEnumerable<SoulVariantDef> candidates = DefDatabase<SoulVariantDef>.AllDefs.Where(d => d.type == extension.forcedSoulColor && d.soulless == false);
+                            options.Add(candidates.RandomElement());
+                        }
+                    }
+                }
+            }
+            if (options.Count != 0)
+            {
+                variant = options.RandomElement();
+            }
+            else
+                variant = GetSoul(isMonster, isBoss);
+
+            soul.Variant = variant;
         }
     }
 }

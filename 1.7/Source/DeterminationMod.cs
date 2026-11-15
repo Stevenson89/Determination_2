@@ -14,6 +14,7 @@ namespace Determination
         public DeterminationMod(ModContentPack content) : base(content)
         {
             settings = GetSettings<DeterminationSettings>();
+            Determination.CURRENT_MOD_VERSION = content.ModMetaData.ModVersion;
         }
 
         public override void DoSettingsWindowContents(Rect inRect)
