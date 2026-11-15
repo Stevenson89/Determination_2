@@ -98,11 +98,9 @@ namespace Determination
                         legacySoul = true;
                 }
             }
-            Log.Message($"Legacy soul : {(legacySoul ? "True" : "False")}");
             if (legacySoul)
             {
                 Scribe_Defs.Look(ref soulVariant, "soul");
-                Log.Message(soulVariant?.ToString());
             }
             else
                 Scribe_Deep.Look(ref soul, "soul");
@@ -110,7 +108,6 @@ namespace Determination
             Scribe_Values.Look(ref determination, "determination");
             if (Scribe.mode == LoadSaveMode.LoadingVars && soulVariant != null && soul == null)
             {
-                Log.Message("Making legacy soul");
                 soul = new Soul(soulVariant);
                 soulVariant = null;
             }

@@ -22,7 +22,7 @@ namespace Determination.Migration
         public void MigrateFromLegacy()
         {
             // CompSouls migrate on their own.
-            Log.Message("Determination upgraded to 2.0!");
+            Log.Message("Determination upgraded from legacy version!");
         }
 
         // Called when we're certain this save has never had a version of Determination installed before
