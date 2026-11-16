@@ -14,7 +14,7 @@ namespace Determination
         private bool active = false;
         public void Activate()
         {
-            timer = SoulUtilities.IsBossMonster((parent as Corpse).InnerPawn) ? 6 : 0;
+            timer = SoulUtilities.IsBossMonster((parent as Corpse).InnerPawn) ? 6 : 2;
             active = true;
         }
         public override void CompTickRare()
