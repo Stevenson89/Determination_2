@@ -126,4 +126,44 @@
         </thingCategories>
     </ThingDef>
 
+    <ThingDef>
+        <defName>DustJar</defName>
+        <label>dust jar</label>
+        <description>A glass jar containing the dust of a dead monster.</description>
+        <thingClass>Determination.Dust</thingClass>
+        <category>Item</category>
+        <drawerType>MapMeshAndRealTime</drawerType>
+        <useHitPoints>true</useHitPoints>
+        <techLevel>Industrial</techLevel>
+        <selectable>true</selectable>
+        <altitudeLayer>Item</altitudeLayer>
+        <tickerType>Rare</tickerType>
+        <alwaysHaulable>true</alwaysHaulable>
+        <pathCost>14</pathCost>
+        <allowedArchonexusCount>1</allowedArchonexusCount>
+        <rotatable>false</rotatable>
+        <graphicData>
+            <texPath>Things/Item/DustJar</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <color>(255, 255, 255)</color>
+        </graphicData>
+        <inspectorTabs>
+            <li>ITab_Pawn_Character</li>
+            <li>ITab_Pawn_Social</li>
+            <li>ITab_Genes</li>
+            <li>ITab_Pawn_Gear</li>
+            <li>ITab_Pawn_Log</li>
+        </inspectorTabs>
+        <statBases>
+            <MaxHitPoints>10</MaxHitPoints>
+            <Flammability>0</Flammability>
+            <Beauty>-1</Beauty>
+            <DeteriorationRate>0</DeteriorationRate>
+            <Mass>1</Mass>
+        </statBases>
+        <thingCategories>
+            <li>CorpsesHumanlike</li>
+        </thingCategories>
+    </ThingDef>
+
 </Defs>

@@ -13,6 +13,7 @@ namespace Determination
     {
         public static ThingDef DeterminationExtractor;
         public static ThingDef DeterminationSyringe;
+        public static ThingDef DustJar;
         static ThingDefOf() => DefOfHelper.EnsureInitializedInCtor(typeof(ThingDefOf));
     }
 }
