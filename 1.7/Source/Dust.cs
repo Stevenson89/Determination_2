@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine;
 using Verse;
 
 namespace Determination
@@ -10,8 +11,8 @@ namespace Determination
       IThingHolder,
       IThingHolderTickable
     {
-        ThingOwner<Pawn> innerContainer;
-        public Pawn? InnerPawn
+        ThingOwner<Pawn> innerContainer = new();
+        public Pawn InnerPawn
         {
             get => innerContainer.Count <= 0 ? null : innerContainer[0];
             set
@@ -35,7 +36,12 @@ namespace Determination
         bool IThingHolderTickable.ShouldTickContents => false;
 
         public ThingOwner GetDirectlyHeldThings() => innerContainer;
-
+        public override void DynamicDrawPhaseAt(DrawPhase phase, Vector3 drawLoc, bool flip = false)
+        {
+            if (phase != DrawPhase.Draw)
+                return;
+            DrawAt(drawLoc, flip);
+        }
         public void GetChildHolders(List<IThingHolder> outChildren)
         {
             ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, (IList<Thing>)this.GetDirectlyHeldThings());

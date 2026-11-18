@@ -27,14 +27,14 @@ namespace Determination
                 if (timer <= 0)
                 {
                     Corpse corpse = parent as Corpse;
+                    corpse.Strip(false);
                     Pawn innerPawn = corpse.InnerPawn;
                     Dust dust = (Dust)ThingMaker.MakeThing(ThingDefOf.DustJar);
                     corpse.InnerPawn = null;
                     dust.InnerPawn = innerPawn;
                     IntVec3 corpsePos = corpse.Position;
                     Map map = corpse.Map;
-                    corpse.Strip(false);
-                    corpse.Kill();
+                    corpse.Destroy();
                     GenSpawn.Spawn(dust, corpsePos, map);
                 }
             }
