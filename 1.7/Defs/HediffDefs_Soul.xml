@@ -414,4 +414,25 @@
             </li>
         </stages>
     </HediffDef>
+    <HediffDef>
+        <defName>ArtificialDetermination</defName>
+        <label>artificial determination</label>
+        <description>Sets this pawn to 110% determination</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <defaultLabelColor>(1,0.7,0)</defaultLabelColor>
+        <initialSeverity>1</initialSeverity>
+        <stages>
+            <li>
+                <becomeVisible>false</becomeVisible>
+                <statOffsets>
+                     <ExpGain>0.25</ExpGain>
+                 </statOffsets>
+            </li>
+        </stages>
+        <comps>
+            <li Class="Determination.HediffCompProperties_SetDetermination">
+                <level>1.1</level>
+            </li>
+        </comps>
+    </HediffDef>
 </Defs>
