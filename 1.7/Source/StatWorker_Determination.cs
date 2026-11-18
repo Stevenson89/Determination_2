@@ -14,12 +14,15 @@ namespace Determination
         {
             float mentalBreakThreshold = request.Thing.GetStatValue(StatDefOf.MentalBreakThreshold);
             float determinationOverride = -1f;
-            foreach (Hediff hediff in request.Pawn.health.hediffSet.hediffs)
+            if (request.Pawn?.health?.hediffSet?.hediffs != null)
             {
-                HediffComp_SetDetermination comp = hediff.TryGetComp<HediffComp_SetDetermination>();
-                if (comp != null && comp.Props.level > determinationOverride)
+                foreach (Hediff hediff in request.Pawn.health.hediffSet.hediffs)
                 {
-                    determinationOverride = comp.Props.level;
+                    HediffComp_SetDetermination comp = hediff.TryGetComp<HediffComp_SetDetermination>();
+                    if (comp != null && comp.Props.level > determinationOverride)
+                    {
+                        determinationOverride = comp.Props.level;
+                    }
                 }
             }
             if (determinationOverride >= -0f)
