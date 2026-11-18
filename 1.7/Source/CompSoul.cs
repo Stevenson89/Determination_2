@@ -385,7 +385,7 @@ namespace Determination
         public override void PostDraw()
         {
             base.PostDraw();
-            if (parent.Spawned && Determination.ShowSoulOverlay)
+            if ((parent.Spawned || pawn.Corpse != null) && Determination.ShowSoulOverlay)
             {
                 Vector3 drawPos = parent.DrawPos;
                 drawPos.y += 0.05f; // lower altitude = drawn beneath the parent's own graphic
