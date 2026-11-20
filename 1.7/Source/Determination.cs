@@ -1,7 +1,10 @@
-﻿using HarmonyLib;
+﻿using Determination.Patches;
+using HarmonyLib;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -70,7 +73,11 @@ namespace Determination
 
             }
             var harmony = new Harmony("com.dangerousjames.determination");
-            harmony.PatchAllUncategorized();
+            Assembly currentAssembly = Assembly.GetExecutingAssembly();
+            harmony.PatchAllUncategorized(currentAssembly);
+            var mOriginal = AccessTools.Method(typeof(ResurrectionUtility), nameof(ResurrectionUtility.TryResurrectWithSideEffects));
+            var transpiler = SymbolExtensions.GetMethodInfo(() => DustPatches.Transpiler_TryResurrectWithSideEffects);
+            harmony.Patch(mOriginal, transpiler: transpiler);
             if (IsTherapyActive)
             {
                 var targetType = AccessTools.TypeByName("ProgressionTherapy.StatPart_MentalStability");

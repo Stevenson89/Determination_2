@@ -150,6 +150,11 @@
         <inspectorTabs>
             <li>ITab_Pawn_Character</li>
         </inspectorTabs>
+        <ingestible>
+            <preferability>NeverForNutrition</preferability>
+            <foodType>Processed</foodType>
+            <sourceDef>Human</sourceDef>
+        </ingestible>
         <statBases>
             <MaxHitPoints>10</MaxHitPoints>
             <Flammability>0</Flammability>

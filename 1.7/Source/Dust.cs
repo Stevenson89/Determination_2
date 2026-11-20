@@ -1,56 +1,72 @@
 ﻿using RimWorld;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 using Verse;
 
 namespace Determination
 {
-    public class Dust : ThingWithComps,
-      IThingHolder,
-      IThingHolderTickable
+    public class Dust : Corpse
     {
-        ThingOwner<Pawn> innerContainer = new();
-        public Pawn InnerPawn
+        public override void DynamicDrawPhaseAt(DrawPhase phase, Vector3 drawLoc, bool flip = false)
         {
-            get => innerContainer.Count <= 0 ? null : innerContainer[0];
-            set
+            DrawAt(drawLoc, flip);
+        }
+
+        public override void TickRare()
+        {
+            base.TickRare();
+            TickRareInt();
+            if (Destroyed)
+                return;
+            if (Bugged)
             {
-                if (value == null)
-                {
-                    innerContainer.Clear();
-                }
-                else
-                {
-                    if (innerContainer.Count > 0)
-                    {
-                        Log.Error("Setting InnerPawn in dust jar that already has one.");
-                        innerContainer.Clear();
-                    }
-                    innerContainer.TryAdd(value, true);
-                }
+                Log.Error(this?.ToString() + " has null innerPawn. Destroying.");
+                Destroy(DestroyMode.Vanish);
             }
         }
 
-        bool IThingHolderTickable.ShouldTickContents => false;
-
-        public ThingOwner GetDirectlyHeldThings() => innerContainer;
-        public override void DynamicDrawPhaseAt(DrawPhase phase, Vector3 drawLoc, bool flip = false)
+        public override void Kill(DamageInfo? dinfo = null, Hediff? exactCulprit = null)
         {
-            if (phase != DrawPhase.Draw)
+            MethodInfo? grandparentKill = typeof(ThingWithComps).GetMethod(nameof(Kill),BindingFlags.Public | BindingFlags.Instance);
+            if (grandparentKill == null)
+            {
+                throw new NullReferenceException("No grandparent method found in Determination.Dust");
+            }
+            var handle = grandparentKill.MethodHandle.GetFunctionPointer();
+            var itsASuperSuperMethodCalledKill = Activator.CreateInstance(typeof(Action), this, handle);
+            if (itsASuperSuperMethodCalledKill != null)
+            {
+                var youCouldCallItAnUltraKill = (Action)itsASuperSuperMethodCalledKill;
+                youCouldCallItAnUltraKill?.Invoke();
+            }
+        }
+
+        public override string GetInspectString()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (InnerPawn.Faction != null && !InnerPawn.Faction.Hidden)
+                sb.AppendLineTagged("Faction".Translate() + ": " + InnerPawn.Faction.NameColored);
+            sb.AppendLine((string)"DeadTime".Translate((NamedArgument)Age.ToStringTicksToPeriodVague(vagueMax: false)));
+            Hediff_DeathRefusal firstHediff = InnerPawn.health.hediffSet.GetFirstHediff<Hediff_DeathRefusal>();
+            if (firstHediff != null && firstHediff.InProgress)
+                sb.AppendLine((string)"SelfResurrecting".Translate());
+            return sb.ToString().TrimEndNewlines();
+        }
+
+        public new void TickRareInt()
+        {
+            if (AllComps != null)
+            {
+                int index = 0;
+                for (int count = AllComps.Count; index < count; ++index)
+                    AllComps[index].CompTickRare();
+            }
+            if (Destroyed)
                 return;
-            DrawAt(drawLoc, flip);
-        }
-        public void GetChildHolders(List<IThingHolder> outChildren)
-        {
-            ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, (IList<Thing>)this.GetDirectlyHeldThings());
-        }
-
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_Deep.Look(ref innerContainer, "innerContainer", this);
+            InnerPawn.TickRare();
         }
     }
 }
